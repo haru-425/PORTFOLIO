@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Dev Portfolio | 氏名</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+   <header>
+        <div class="header-container">
+            <div class="site-logo">
+                <span class="logo-main">PORTFOLIO</span>
+            </div>
+            <nav>
+                <a href="#profile">Profile</a>
+                <a href="#projects">Personal</a>
+                <a href="#team-projects">Team</a>
+                <a href="#tech-log">Log</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="profile" class="fade-in">
+    <h2 class="section-title">PROFILE</h2>
+    <div class="glass-card profile-card">
+        <div class="profile-flex">
+            <div class="profile-photo">
+                <img src="https://pbs.twimg.com/profile_images/1951113680701235201/HVwnOpbo_400x400.jpg" alt="プロフィール写真">
+            </div>
+            <div class="profile-text">
+                <p><strong>名前：</strong> 丸毛温仁（マルモハルト）</p>
+                <p><strong>学年：</strong> ECCコンピュータ専門学校 2年生 (2028年3月卒業見込み)</p>
+                <p><strong>希望職種：</strong> グラフィックスプログラマー</p>
+                <!--<p><strong>特筆事項：</strong> DirectX11 自作エンジン制作</p>-->
+                <p><strong>趣味：</strong> 習字</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section id="projects" class="fade-in">
+            <h2 class="section-title">PERSONAL</h2>
+            <div class="project-grid">
+                <div class="glass-card project-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/__6hPQnyaAI" allowfullscreen></iframe>
+                    </div>
+                    <div class="project-details">
+                        <h3>SHADER DEMO</h3>
+                        <p><i class="fas fa-code"></i> DirectX11 / C++ </p>
+                        <p><i class="fas fa-clock"></i> 2025 08~</p>
+                        <a href="detail-personal.html" class="btn-detail">詳細ページへ</a>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <section id="team-projects" class="fade-in">
+            <h2 class="section-title">TEAM PROJECTS</h2>
+            <div class="team-project-grid">
+
+                <div class="glass-card team-card">
+                    <div class="video-wrapper mini-video">
+                        <iframe src="https://www.youtube.com/embed/RrdWjpoNi-s" allowfullscreen></iframe>
+                    </div>
+                    <div class="team-info-overlay">
+                        <span class="tag">Team</span>
+                        <h3>タイトル：FIGAVOID</h3>
+                        <div class="spec-icons">
+                            <span><i class="fas fa-users"></i> 開発人数：3人</span>
+                            <span><i class="fas fa-user-tag"></i> 担当：メインプログラマー</span>
+                        </div>
+                        <p class="project-summary">戦闘ロジックとエフェクト制御を担当。UniTaskを用いた非同期処理を導入しました。</p>
+                        <a href="detail-team01.html" class="btn-detail">チーム制作の詳細</a>
+                    </div>
+                </div>
+                
+                <div class="glass-card team-card">
+                    <div class="video-wrapper mini-video">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="team-info-overlay">
+                        <span class="tag">Team</span>
+                        <h3>タイトル：RPGバトルデモ</h3>
+                        <div class="spec-icons">
+                            <span><i class="fas fa-users"></i> 開発人数：4人</span>
+                            <span><i class="fas fa-user-tag"></i> 担当：メインプログラマー</span>
+                        </div>
+                        <p class="project-summary">戦闘ロジックとエフェクト制御を担当。UniTaskを用いた非同期処理を導入しました。</p>
+                        <a href="detail-team01.html" class="btn-detail">チーム制作の詳細</a>
+                    </div>
+                </div>
+                
+                <div class="glass-card team-card">
+                    <div class="video-wrapper mini-video">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="team-info-overlay">
+                        <span class="tag">Team</span>
+                        <h3>タイトル：RPGバトルデモ</h3>
+                        <div class="spec-icons">
+                            <span><i class="fas fa-users"></i> 開発人数：4人</span>
+                            <span><i class="fas fa-user-tag"></i> 担当：メインプログラマー</span>
+                        </div>
+                        <p class="project-summary">戦闘ロジックとエフェクト制御を担当。UniTaskを用いた非同期処理を導入しました。</p>
+                        <a href="detail-team01.html" class="btn-detail">チーム制作の詳細</a>
+                    </div>
+                </div>
+                
+                <div class="glass-card team-card">
+                    <div class="video-wrapper mini-video">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="team-info-overlay">
+                        <span class="tag">Team</span>
+                        <h3>タイトル：RPGバトルデモ</h3>
+                        <div class="spec-icons">
+                            <span><i class="fas fa-users"></i> 開発人数：4人</span>
+                            <span><i class="fas fa-user-tag"></i> 担当：メインプログラマー</span>
+                        </div>
+                        <p class="project-summary">戦闘ロジックとエフェクト制御を担当。UniTaskを用いた非同期処理を導入しました。</p>
+                        <a href="detail-team01.html" class="btn-detail">チーム制作の詳細</a>
+                    </div>
+                </div>
+                
+                <div class="glass-card team-card">
+                    <div class="video-wrapper mini-video">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="team-info-overlay">
+                        <span class="tag">Team</span>
+                        <h3>タイトル：RPGバトルデモ</h3>
+                        <div class="spec-icons">
+                            <span><i class="fas fa-users"></i> 開発人数：4人</span>
+                            <span><i class="fas fa-user-tag"></i> 担当：メインプログラマー</span>
+                        </div>
+                        <p class="project-summary">戦闘ロジックとエフェクト制御を担当。UniTaskを用いた非同期処理を導入しました。</p>
+                        <a href="detail-team01.html" class="btn-detail">チーム制作の詳細</a>
+                    </div>
+                </div>
+                
+                <div class="glass-card team-card">
+                    <div class="video-wrapper mini-video">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="team-info-overlay">
+                        <span class="tag">Team</span>
+                        <h3>タイトル：RPGバトルデモ</h3>
+                        <div class="spec-icons">
+                            <span><i class="fas fa-users"></i> 開発人数：4人</span>
+                            <span><i class="fas fa-user-tag"></i> 担当：メインプログラマー</span>
+                        </div>
+                        <p class="project-summary">戦闘ロジックとエフェクト制御を担当。UniTaskを用いた非同期処理を導入しました。</p>
+                        <a href="detail-team01.html" class="btn-detail">チーム制作の詳細</a>
+                    </div>
+                </div>
+                
+                <div class="glass-card team-card">
+                    <div class="video-wrapper mini-video">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="team-info-overlay">
+                        <span class="tag">Team</span>
+                        <h3>タイトル：RPGバトルデモ</h3>
+                        <div class="spec-icons">
+                            <span><i class="fas fa-users"></i> 開発人数：4人</span>
+                            <span><i class="fas fa-user-tag"></i> 担当：メインプログラマー</span>
+                        </div>
+                        <p class="project-summary">戦闘ロジックとエフェクト制御を担当。UniTaskを用いた非同期処理を導入しました。</p>
+                        <a href="detail-team01.html" class="btn-detail">チーム制作の詳細</a>
+                    </div>
+                </div>
+                
+                <div class="glass-card team-card">
+                    <div class="video-wrapper mini-video">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <div class="team-info-overlay">
+                        <span class="tag">Team</span>
+                        <h3>タイトル：RPGバトルデモ</h3>
+                        <div class="spec-icons">
+                            <span><i class="fas fa-users"></i> 開発人数：4人</span>
+                            <span><i class="fas fa-user-tag"></i> 担当：メインプログラマー</span>
+                        </div>
+                        <p class="project-summary">戦闘ロジックとエフェクト制御を担当。UniTaskを用いた非同期処理を導入しました。</p>
+                        <a href="detail-team01.html" class="btn-detail">チーム制作の詳細</a>
+                    </div>
+                </div>
+
+                
+            </div>
+
+        </section>
+
+        <section id="tech-log" class="fade-in">
+            <h2 class="section-title">CURRENT TECH LOG</h2>
+            <div class="glass-card">
+                <div class="log-container">
+                    </div>
+            </div>
+        </section>
+
+      <section id="skills" class="fade-in">
+    <h2 class="section-title">SKILLS</h2>
+    
+    <h3 class="skill-category-title"><i class="fas fa-gamepad"></i> Engine & Graphics</h3>
+    <div class="skill-grid">
+        <div class="skill-card">
+            <i class="fab fa-unity" style="color: #fff;"></i>
+            <h4>Unity</h4>
+            <p>3D/2D開発、UniTask、Zenject</p>
+        </div>
+        <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" width="50" class="dark-icon" alt="UE">
+            <h4>Unreal Engine</h4>
+            <p>Blueprint / C++ による実装</p>
+        </div>
+        <div class="skill-card">
+            <i class="fas fa-cubes" style="color: #00f2ff;"></i>
+            <h4>DirectX11</h4>
+            <p>レンダリングパイプライン、HLSL</p>
+        </div>
+    </div>
+
+    <h3 class="skill-category-title"><i class="fas fa-code"></i> Programming</h3>
+    <div class="skill-grid">
+        <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" width="45" alt="C++">
+            <h4>C++</h4>
+            <p>メモリ管理、DXLibを用いた制作</p>
+        </div>
+        <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" width="45" alt="C#">
+            <h4>C#</h4>
+            <p>Unityスクリプト、非同期処理</p>
+        </div>
+        <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" width="45" alt="VS2022">
+            <h4>Visual Studio 2022</h4>
+            <p>デバッグ、プロファイリング</p>
+        </div>
+    </div>
+
+    <h3 class="skill-category-title"><i class="fas fa-wrench"></i> Design & Business</h3>
+    <div class="skill-grid">
+        <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg" width="45" alt="Blender">
+            <h4>Blender</h4>
+            <p>3Dモデリング、UV展開</p>
+        </div>
+        <div class="skill-card">
+            <i class="fab fa-github"></i>
+            <h4>Git / GitHub</h4>
+            <p>バージョン管理、チーム制作</p>
+        </div>
+        <div class="skill-card">
+            <i class="fas fa-file-powerpoint" style="color: #d24726;"></i>
+            <h4>PowerPoint</h4>
+            <p>企画書・仕様書の作成</p>
+        </div>
+        <div class="skill-card">
+            <i class="fas fa-file-excel" style="color: #217346;"></i>
+            <h4>Excel</h4>
+            <p>数値管理、進捗管理</p>
+        </div>
+    </div>
+</section>
+        <footer id="contact">
+            <div class="footer-content glass-card">
+                <h2 class="section-title">CONTACT</h2>
+                <p>お問い合わせは以下の連絡先、または各SNSよりお願いいたします。</p>
+                <div class="contact-methods">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>your-email@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>090-0000-0000</span>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 丸毛温仁 All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
