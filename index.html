@@ -1,98 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PORTFOLIO HUB | プログラマー作品集</title>
-    <link rel="stylesheet" href="./css/style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
-        .portal-container {
-            max-width: 1200px;
-            margin: 100px auto;
-            text-align: center;
-        }
-        .portal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-            padding: 20px;
-        }
-        .user-card {
-            text-decoration: none;
-            color: white;
-            transition: 0.4s;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-        .user-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-10px);
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
-        }
-        .user-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: var(--accent);
-        }
-        .user-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .user-role {
-            font-size: 0.8rem;
-            opacity: 0.6;
-            letter-spacing: 2px;
-        }
+      .portal-container {
+        max-width: 1200px;
+        margin: 100px auto;
+        text-align: center;
+      }
+      .portal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+        padding: 20px;
+      }
+      .user-card {
+        text-decoration: none;
+        color: white;
+        transition: 0.4s;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+      }
+      .user-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-10px);
+        box-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
+      }
+      .user-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        color: var(--accent);
+      }
+      .user-name {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .user-role {
+        font-size: 0.8rem;
+        opacity: 0.6;
+        letter-spacing: 2px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <canvas id="bg-canvas"></canvas>
 
     <div class="portal-container">
-        <h1 class="logo-main" style="font-size: 3rem;">PORTFOLIO HUB</h1>
-        <p style="opacity: 0.7;">各制作者のポートフォリオを選択してください</p>
+      <h1 class="logo-main" style="font-size: 3rem">PORTFOLIO HUB</h1>
+      <p style="opacity: 0.7">各制作者のポートフォリオを選択してください</p>
 
-        <div class="search-container">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" id="user-search" placeholder="制作者名や職種で検索..." onkeyup="filterUsers()">
-        </div>
+      <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input
+          type="text"
+          id="user-search"
+          placeholder="制作者名や職種で検索..."
+          onkeyup="filterUsers()"
+        />
+      </div>
 
-        <div class="portal-grid" id="user-list">
-
+      <div class="portal-grid" id="user-list">
         <a href="./kuroda/index.html" class="glass-card user-card">
-            <div class="user-icon"><i class="fa-solid fa-terminal"></i></div>
-            <div class="user-name">黒田 大智</div>
-            <div class="user-role">エンジン開発</div>
+          <div class="user-icon"><i class="fa-solid fa-terminal"></i></div>
+          <div class="user-name">黒田 大智</div>
+          <div class="user-role">エンジン開発</div>
         </a>
-            <a href="./marumo/index.html" class="glass-card user-card">
-                <div class="user-icon"><i class="fas fa-code"></i></div>
-                <div class="user-name">丸毛 温仁</div>
-                <div class="user-role">グラフィックスプログラマー</div>
-            </a>
+        <a href="./sowa/index.html" class="glass-card user-card">
+          <div class="user-icon"><i class="fas fa-terminal"></i></div>
+          <div class="user-name">曽和 真英</div>
+          <div class="user-role">プログラマー</div>
+        </a>
 
-            <a href="./sowa/index.html" class="glass-card user-card">
-                <div class="user-icon"><i class="fas fa-terminal"></i></div>
-                <div class="user-name">曽和 真英</div>
-                <div class="user-role">プログラマー</div>
-            </a>
+        <a href="./fujimoto/index.html" class="glass-card user-card">
+          <div class="user-icon"><i class="fas fa-terminal"></i></div>
+          <div class="user-name">藤本 響平</div>
+          <div class="user-role">アプリケーションプログラマー</div>
+        </a>
 
-            <a href="./fujimoto/index.html" class="glass-card user-card">
-                <div class="user-icon"><i class="fas fa-terminal"></i></div>
-                <div class="user-name">藤本 響平</div>
-                <div class="user-role">アプリケーションプログラマー</div>
-            </a>
+        <a href="./temp/index.html" class="glass-card user-card">
+          <div class="user-icon"><i class="fas fa-terminal"></i></div>
+          <div class="user-name">404</div>
+          <div class="user-role">ComingSoon...</div>
+        </a>
 
-            <a href="./temp/index.html" class="glass-card user-card">
-                <div class="user-icon"><i class="fas fa-terminal"></i></div>
-                <div class="user-name">404</div>
-                <div class="user-role">ComingSoon...</div>
-            </a>
-
-
-            </div>
+        <a href="./marumo/index.html" class="glass-card user-card">
+          <div class="user-icon"><i class="fas fa-code"></i></div>
+          <div class="user-name">丸毛 温仁</div>
+          <div class="user-role">グラフィックスプログラマー</div>
+        </a>
+      </div>
     </div>
 
     <script src=".js/script.js"></script>
-</body>
+  </body>
 </html>
