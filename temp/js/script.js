@@ -70,8 +70,8 @@ function initCanvas() {
 
 function loadTechLogs() {
     const logs = [
-        { date: "2026/02/06", title: "GitHub Pages公開", content: "ポートフォリオサイトの基盤を構築。Canvas背景を実装。" },
-        { date: "2026/01/20", title: "DirectX11学習", content: "レンダリングパイプラインと定数バッファの仕組みを理解。" }
+        { date: "2026/02/06", title: "例", content: "ComingSoon" },
+        { date: "2026/01/20", title: "例", content: "ComingSoon" }
     ];
     const container = document.querySelector('.log-container');
     if (!container) return;

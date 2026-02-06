@@ -50,9 +50,15 @@
     <canvas id="bg-canvas"></canvas>
 
     <div class="portal-container">
-        <h1 class="logo-main" style="font-size: 3rem;">CREATORS HUB</h1>
+        <h1 class="logo-main" style="font-size: 3rem;">PORTFOLIO HUB</h1>
         <p style="opacity: 0.7;">各制作者のポートフォリオを選択してください</p>
-        <div class="portal-grid">
+
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="user-search" placeholder="制作者名や職種で検索..." onkeyup="filterUsers()">
+        </div>
+
+        <div class="portal-grid" id="user-list">
 
         <a href="./kuroda/index.html" class="glass-card user-card">
             <div class="user-icon"><i class="fa-solid fa-terminal"></i></div>

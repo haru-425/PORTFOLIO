@@ -83,3 +83,25 @@ function loadTechLogs() {
         </div>
     `).join('');
 }
+
+function filterUsers() {
+    const input = document.getElementById('user-search');
+    const filter = input.value.toLowerCase();
+    const grid = document.getElementById('user-list');
+    const cards = grid.getElementsByClassName('user-card');
+
+    for (let i = 0; i < cards.length; i++) {
+        // 名前と役割のテキストを取得
+        const name = cards[i].getElementsByClassName('user-name')[0].innerText;
+        const role = cards[i].getElementsByClassName('user-role')[0].innerText;
+
+        // どちらかに検索文字が含まれていれば表示
+        if (name.toLowerCase().indexOf(filter) > -1 || role.toLowerCase().indexOf(filter) > -1) {
+            cards[i].style.display = "";
+            cards[i].style.opacity = "1";
+        } else {
+            cards[i].style.display = "none";
+            cards[i].style.opacity = "0";
+        }
+    }
+}
