@@ -70,7 +70,8 @@ function initCanvas() {
 
 function loadTechLogs() {
     const logs = [
-        { date: "2026/02/06", title: "GitHub Pages公開", content: "ポートフォリオサイトの基盤を構築。Canvas背景を実装。" }
+        { date: "2026/02/06", title: "GitHub Pages公開", content: "ポートフォリオサイトの基盤を構築。Canvas背景を実装。" },
+        { date: "2026/02/21", title: "ECC EXPO受賞", content: "ぬってスイ～つ！がカプコン賞、餅月が優秀賞を受賞。" },
     ];
     const container = document.querySelector('.log-container');
     if (!container) return;
