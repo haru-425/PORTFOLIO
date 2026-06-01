@@ -66,6 +66,15 @@
           onkeyup="filterUsers()"
         />
       </div>
+
+      <div class="sort-container" style="margin-bottom: 20px">
+        <button class="sort-btn" onclick="sortUsers('name-asc')">
+          <i class="fas fa-sort-alpha-down"></i> 名前順
+        </button>
+        <button class="sort-btn" onclick="sortUsers('random')">
+          <i class="fas fa-random"></i> シャッフル（自由）
+        </button>
+      </div>
       <div class="portal-grid" id="user-list">
         <a href="./kinutani/index.html" class="glass-card user-card">
           <div class="user-icon"><i class="fas fa-code"></i></div>

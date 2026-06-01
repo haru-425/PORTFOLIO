@@ -113,6 +113,26 @@ section {
     border: none;
 }
 
+/* 画像モード用スタイル */
+.image-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin-bottom: 15px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
 .tag {
     background: var(--accent-purple);
     color: white;
