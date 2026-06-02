@@ -68,13 +68,26 @@ function initCanvas() {
     animate();
 }
 
-function loadTechLogs() {
-    const logs = [
-        { date: "2026/02/06", title: "例", content: "ComingSoon" },
-        { date: "2026/01/20", title: "例", content: "ComingSoon" }
-    ];
+async function loadTechLogs() {
     const container = document.querySelector('.log-container');
     if (!container) return;
+
+    let logs = [];
+    try {
+        const response = await fetch('./logs.json');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        logs = await response.json();
+    } catch (error) {
+        console.error('logs.json の読み込みに失敗しました。', error);
+        container.innerHTML = `<p style="color:#bbb;">ログを読み込めませんでした。HTTP サーバー上で開いているか確認してください。</p>`;
+        return;
+    }
+
+    if (!Array.isArray(logs) || logs.length === 0) {
+        container.innerHTML = `<p style="color:#bbb;">現在ログはありません。</p>`;
+        return;
+    }
+
     container.innerHTML = logs.map(l => `
         <div class="log-item" style="margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px;">
             <small style="color:var(--accent); font-weight:bold;">${l.date}</small>
