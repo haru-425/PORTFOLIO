@@ -31,24 +31,46 @@
           <p class="project-tagline">〜 開発効率特化のゲームエンジンを目指して 〜</p>
         </div>
 
-        <div class="detail-grid">
-          <div class="detail-left">
-            <div class="image-wrapper glass-card">
-              <img
-                src="./resources/CurryEngine.png"
-              ></img>
-            </div>
+        <!-- 左右のレイアウトを制御するコンテナ -->
+        <div class="detail-container">
 
-            <div class="glass-card spec-info">
+          <!-- 左側：目次エリア（固定配置） -->
+          <div class="detail-left">
+            <nav class="toc">
+              <h2 class="toc-title"><i class="fas fa-list"></i> 目次</h2>
+              <ul>
+                <li><a href="#overview">概要</a></li>
+                <li><a href="#description">作品説明</a></li>
+                <li>
+                  <a href="#tech">実装技術</a>
+                  <!-- 正しいネスト構造に修正 -->
+                  <ul>
+                    <li><a href="#tech">HLSLシェーダーのホットリロード</a></li>
+                    <li><a href="#tech">C#スクリプティング</a></li>
+                    <li><a href="#tech">描画負荷の最適化</a></li>
+                  </ul>
+                </li>
+                <li><a href="#future">今後の展望・開発体制</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <!-- 右側：メインコンテンツエリア（スクロール） -->
+          <div class="detail-right">
+            <div class="image-wrapper glass-card">
+              <img src="./resources/CurryEngine.png" alt="CurryEngine">
+            </div>
+          
+            <section id="overview" class="glass-card content-section">
               <h3><i class="fas fa-info-circle"></i> 概要</h3>
               <table>
                 <tr>
                   <th>開発環境</th>
-                  <td>visualstudio 2022 / C++ / C#</td>
+                  <td>Visual Studio 2022 / C++ / C#</td>
                 </tr>
                 <tr>
                   <th>制作期間</th>
-                  <td>2025年3月～</td>
+                  <td>2025/08～</td>
                 </tr>
                 <tr>
                   <th>制作人数</th>
@@ -63,50 +85,53 @@
                   <td>「使いやすさ」と「汎用性」</td>
                 </tr>
               </table>
-            </div>
-          </div>
-
-          <div class="detail-right">
-            <div class="glass-card content-section">
-              <h3><i class="fas fa-bullseye"></i> 作品説明</h3>
-              <p>
-                準備中
-              </p>
-
-              <h3><i class="fas fa-star"></i> はじめに</h3>
-              <p>
-                準備中
-              </p>
-
-              <h3><i class="fas fa-microchip"></i> 実装技術の一覧</h3>
-              <ul class="tech-list">
-                <li>
-                  <strong>HLSLシェーダーのホットリロード:</strong>
-                  準備中
-                </li>
-                <li>
-                  <strong>C#スクリプティング:</strong>
-                  ホットリロードにも対応し、ゲームのロジックを素早く実装できます。
-                </li>
-              </ul>
-
-              <h3><i class="fas fa-tools"></i> 改善目標</h3>
-              <p>
-                現状、描画負荷が高いため、カリングなどの最適化を行い、より低スペックな環境でも動作するように改善したいと考えています。
-              </p>
-
-              <div class="link-area">
-                <a
-                  href="https://github.com/Sakana00123/CurryEngine3.git"
-                  class="github-btn"
-                  target="_blank"
-                >
-                  <i class="fab fa-github"></i> View Code on GitHub
-                </a>
+            </section>
+          
+            <section id="description">
+              <div class="glass-card content-section">
+                <h3><i class="fas fa-bullseye"></i> 作品説明</h3>
+                <p>
+                  CurryEngineは、開発効率の向上を目指して設計されたゲームエンジンです。ホットリロード機能やC#スクリプティングなど、開発者が素早くゲームを作り上げるための機能を多数実装しています。現在も開発中で、今後さらに機能を追加し、より多くの開発者にとって使いやすいエンジンを目指しています。
+                </p>
+                <div class="link-area">
+                  <a href="https://github.com/Sakana00123/CurryEngine3.git" class="github-btn" target="_blank">
+                    <i class="fab fa-github"></i> View Code on GitHub
+                  </a>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </section>
+          
+            <section id="tech">
+              <div class="glass-card content-section">
+                <h3><i class="fas fa-microchip"></i> 実装技術</h3>
+                <ul class="tech-list">
+                  <li>
+                    <strong>HLSLシェーダーのホットリロード:</strong>
+                    シェーダーコードの変更をリアルタイムで反映させる機能を実装しました。これにより、開発者はシェーダーの調整を素早く行うことができ、開発効率が大幅に向上します。
+                  </li>
+                  <li>
+                    <strong>C#スクリプティング:</strong>
+                    ホットリロードにも対応し、ゲームのロジックを素早く実装できます。
+                  </li>
+                  <li>
+                    <strong>描画負荷の最適化:</strong>
+                    カリングなどの最適化を行い、より低スペックな環境でも快適に動作するように改善しています。
+                  </li>
+                </ul>
+              </div>
+            </section>
+          
+            <section id="future">
+              <div class="glass-card content-section">
+                <h3><i class="fas fa-tools"></i> 改善目標</h3>
+                <p>
+                  現状、描画負荷が高いため、カリングなどの最適化を行い、より低スペックな環境でも動作するように改善したいと考えています。
+                </p>
+              </div>
+            </section>
+
+          </div> <!-- /detail-right -->
+        </div> <!-- /detail-container -->
       </section>
     </main>
 
