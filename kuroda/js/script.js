@@ -70,6 +70,7 @@ function initCanvas() {
 
 function loadTechLogs() {
     const logs = [
+        { date: "2026/06/02", title: "ポートフォリオ更新", content: "チーム制作や個人制作の内容を更新しました。" },
         { date: "2026/02/21", title: "ECC EXPO受賞", content: "ぬってスイ～つ！がカプコン賞、餅月が優秀賞を受賞。" },
     ];
     const container = document.querySelector('.log-container');
