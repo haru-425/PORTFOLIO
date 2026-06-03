@@ -478,3 +478,134 @@ h3 {
         height: 150px;
     }
 }
+
+/* ----------------------------------
+ * 共通設定（ページ全体のスムーズスクロール）
+ * ---------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 目次ジャンプ時に見出しがヘッダーの裏に隠れるのを防ぐ */
+section[id] {
+  scroll-margin-top: 100px; /* ヘッダーの高さ + 余白 */
+}
+
+/* ----------------------------------
+ * 2カラムレイアウトの構造
+ * ---------------------------------- */
+.detail-container {
+  display: flex;
+  gap: 40px;            /* 左右のカラム間の余白 */
+  align-items: flex-start;
+  max-width: 1200px;    /* 全体の最大幅（お好みに合わせて） */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 左カラム（目次を固定する親要素） */
+.detail-left {
+  flex: 1;              /* 横幅の比率（小さめ） */
+  min-width: 250px;
+  max-width: 300px;
+  position: relative;
+}
+
+/* 右カラム（メインコンテンツ） */
+.detail-right {
+  flex: 3;              /* 横幅の比率（大きめ） */
+  min-width: 0;         /* 横飛び出し防止のモダンCSSの呪文 */
+}
+
+/* ----------------------------------
+ * スケルトン（ガラスカード）風の固定目次
+ * ---------------------------------- */
+.toc {
+  position: -webkit-sticky; /* Safari対応 */
+  position: sticky;
+  top: 90px;           /* スクロール時に画面の上端からどの位置で止まるか */
+  z-index: 10;
+  
+  /* ポートフォリオの雰囲気に合わせたガラスデザイン */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.toc-title {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 8px;
+}
+
+/* 目次リストのスタイルリセット */
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* 子要素（インデントされた技術詳細）のリスト */
+.toc ul ul {
+  padding-left: 18px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.toc li {
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.toc li:last-child {
+  margin-bottom: 0;
+}
+
+/* 目次のリンクテキスト */
+.toc a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+/* ホバー時のエフェクト（好みのアクセントカラーに変えてください） */
+.toc a:hover {
+  color: #00adb5; 
+  transform: translateX(4px); /* 少し右に動くアニメーション */
+}
+
+/* 子要素のフォントサイズを少し小さくしてメリハリをつける */
+.toc ul ul a {
+  font-size: 0.88rem;
+  color: #aaa;
+}
+
+/* ----------------------------------
+ * レスポンシブ対応（スマホやタブレット時）
+ * ---------------------------------- */
+@media (max-width: 768px) {
+  /* 画面が狭くなったら縦並びに切り替える */
+  .detail-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .detail-left,
+  .detail-right {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  /* スマホの時は固定を解除して普通のカードにする */
+  .toc {
+    position: static;
+    margin-bottom: 20px;
+  }
+}
