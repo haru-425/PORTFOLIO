@@ -43,7 +43,7 @@ header {
 }
 
 .header-container {
-    max-width: 1100px;
+    /* max-width: 1100px; */
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -71,7 +71,7 @@ nav a:hover {
 }
 
 section {
-    max-width: 1000px;
+    /* max-width: 1000px; */
     margin: 100px auto;
     padding: 0 20px;
 }
@@ -161,7 +161,7 @@ section {
 }
 
 .log-container {
-    max-height: 400px;
+    /* max-height: 400px; */
     overflow-y: auto;
     padding-right: 10px;
 }
@@ -277,7 +277,7 @@ h3 {
 
 /* 詳細ページ全体のレイアウト */
 .detail-page-wrapper {
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 120px auto 50px;
     padding: 0 20px;
 }
@@ -498,22 +498,19 @@ section[id] {
   display: flex;
   gap: 40px;            /* 左右のカラム間の余白 */
   align-items: flex-start;
-  max-width: 1200px;    /* 全体の最大幅（お好みに合わせて） */
   margin: 0 auto;
   padding: 0 20px;
 }
 
 /* 左カラム（目次を固定する親要素） */
 .detail-left {
-  flex: 1;              /* 横幅の比率（小さめ） */
-  min-width: 250px;
-  max-width: 300px;
+  flex: 1;              /* 横幅の比率 */
   position: relative;
 }
 
 /* 右カラム（メインコンテンツ） */
 .detail-right {
-  flex: 3;              /* 横幅の比率（大きめ） */
+  flex: 1;              /* 横幅の比率 */
   min-width: 0;         /* 横飛び出し防止のモダンCSSの呪文 */
 }
 
@@ -608,4 +605,23 @@ section[id] {
     position: static;
     margin-bottom: 20px;
   }
+}
+
+/* アクセント */
+.text-accent {
+    color: var(--accent-white);
+    font-weight: bold; /* 少し太字にすると、より際立って見やすくなります */
+}
+
+/* 紫色のアクセントカラーにする場合 */
+.text-purple {
+    color: var(--accent-purple);
+    font-weight: bold;
+}
+
+/* サイバーパンク風にネオン発光させたい場合 */
+.text-neon {
+    color: #fff;
+    text-shadow: 0 0 8px var(--accent);
+    font-weight: bold;
 }
