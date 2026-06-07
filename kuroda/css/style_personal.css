@@ -150,6 +150,7 @@ section {
     color: var(--accent);
 }
 
+/* 詳細ボタンのスタイル(下に配置) */
 .btn-detail {
     display: inline-block;
     padding: 10px 20px;

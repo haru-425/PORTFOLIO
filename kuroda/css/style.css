@@ -142,14 +142,25 @@ section {
     font-weight: bold;
 }
 
+/* --- 既存の不要なマージンや高さをリセット・微調整 --- */
 .spec-icons {
-    display: flex;
-    gap: 15px;
-    margin: 10px 0;
+    margin: 0 !important; /* Gridで制御するためマージンをリセット */
+    align-content: start; /* 上揃え */
+    display: grid;
+    gap: 3px;
     font-size: 0.8rem;
     color: var(--accent);
 }
 
+.project-summary {
+    margin: 0 !important; /* マージンをリセット */
+    font-size: 0.8rem;
+    opacity: 0.7;
+    line-height: 1.5;
+    overflow: hidden;    /* 万が一溢れた場合の保険 */
+}
+
+/* 詳細ボタンのスタイル(下に配置) */
 .btn-detail {
     display: inline-block;
     padding: 10px 20px;
@@ -158,6 +169,7 @@ section {
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
+    margin-top: auto;
 }
 
 .log-container {
@@ -384,12 +396,27 @@ h3 {
     gap: 20px;
 }
 
+/* --- カード全体の高さを統一し、縦のレイアウトを整える --- */
 .team-card {
     transition: 0.3s ease;
     display: flex;
     flex-direction: column;
+    height: 100%; /* すべてのカードの高さを一番長いものに合わせる */
 }
 
+/* --- 中身のテキストエリアをGrid化して、各パーツの開始位置を固定する --- */
+.team-info-overlay {
+    display: grid;
+    /* 1行目(tag): 自動
+      2行目(h3): 自動
+      3行目(spec-icons): 90px で固定（3〜4行分の高さを確保）
+      4行目(project-summary): 70px で固定（2〜3行分の高さを確保）
+      5行目(button): 自動
+    */
+    grid-template-rows: auto auto 90px 70px auto;
+    gap: 10px; /* パーツ間の隙間 */
+    flex-grow: 1; /* カード下部までエリアを広げる */
+}
 .team-card:hover {
     transform: translateY(-5px);
     border-color: var(--accent);
@@ -410,6 +437,18 @@ h3 {
     font-size: 0.8rem;
     opacity: 0.7;
     margin: 0;
+}
+
+.team-info {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.team-info-detail {
+    grid-row: 5; /* 囲まれている場合も必ず5行目に配置 */
+    display: flex;
 }
 
 /* プロフィール全体のレイアウト */
