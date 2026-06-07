@@ -170,6 +170,14 @@ section {
     border-radius: 5px;
     font-weight: bold;
     margin-top: auto;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.btn-detail:hover {
+    background: linear-gradient(45deg, var(--accent), var(--accent-purple));
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+    transform: translateY(-3px);
 }
 
 .log-container {
@@ -417,11 +425,11 @@ h3 {
     gap: 10px; /* パーツ間の隙間 */
     flex-grow: 1; /* カード下部までエリアを広げる */
 }
-.team-card:hover {
+/* .team-card:hover {
     transform: translateY(-5px);
     border-color: var(--accent);
     box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
-}
+} */
 
 .mini-video {
     margin-bottom: 10px !important;
