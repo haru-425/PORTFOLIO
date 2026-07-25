@@ -406,6 +406,7 @@ h3 {
 
 /* --- カード全体の高さを統一し、縦のレイアウトを整える --- */
 .team-card {
+    position: relative;
     transition: 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -430,6 +431,19 @@ h3 {
     border-color: var(--accent);
     box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
 } */
+
+.date-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+}
 
 .mini-video {
     margin-bottom: 10px !important;
