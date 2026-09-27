@@ -539,3 +539,71 @@ h3 {
         height: 150px;
     }
 }
+
+/* 下部固定バナーの基本設定 */
+.cookie-banner {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%); /* 画面中央寄せ */
+  width: calc(100% - 2rem);
+  max-width: 700px;
+  background-color: rgba(15, 23, 42, 0.9); /* ダーク系の透過背景 */
+  backdrop-filter: blur(8px);             /* すりガラス効果 */
+  color: #e2e8f0;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  z-index: 9999; /* 最前面に表示 */
+  font-family: sans-serif;
+  font-size: 0.85rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* 非表示にするときの状態（JSで制御） */
+.cookie-banner.is-hidden {
+  opacity: 0;
+  transform: translate(-50%, 20px); /* 下へフェードアウト */
+  pointer-events: none;             /* クリックを無効化 */
+}
+
+.banner-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+/* スマホ以外（横幅640px以上）は横並びにする */
+@media (min-width: 640px) {
+  .banner-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.banner-text {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* 閉じるボタン */
+.banner-btn {
+  background-color: #38bdf8;
+  color: #0f172a;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+.banner-btn:hover {
+  background-color: #7dd3fc;
+}
