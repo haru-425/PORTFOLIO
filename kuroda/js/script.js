@@ -83,26 +83,3 @@ function loadTechLogs() {
         </div>
     `).join('');
 }
-
-
-// クッキーのバナー
-document.addEventListener('DOMContentLoaded', () => {
-  const banner = document.getElementById('cookie-banner');
-  const acceptBtn = document.getElementById('cookie-accept-btn');
-
-  // 1. 過去に「閉じる」を押した記憶があるか確認
-  const isAccepted = localStorage.getItem('cookie_banner_accepted');
-
-  if (isAccepted === 'true') {
-    // すでに閉じられている場合は、即座に非表示クラスを付与
-    banner.classList.add('is-hidden');
-  }
-
-  // 2. 「了解して閉じる」ボタンが押された時の処理
-  acceptBtn.addEventListener('click', () => {
-    // バナーをスッと消す
-    banner.classList.add('is-hidden');
-    // ブラウザに「閉じた」という状態を保存する（ページを挟んでも有効）
-    localStorage.setItem('cookie_banner_accepted', 'true');
-  });
-});
