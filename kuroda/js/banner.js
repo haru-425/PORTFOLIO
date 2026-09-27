@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   banner.innerHTML = `
     <div class="banner-inner">
       <p class="banner-text">
-        当サイトでは、アクセス解析とサービス向上のために Google アナリティクス（Cookie）を使用しています。
+        当サイトでは、アクセス解析と品質向上のために Cookie を使用しています。
       </p>
       <button type="button" id="cookie-accept-btn" class="banner-btn">了解して閉じる</button>
     </div>
