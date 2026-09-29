@@ -180,6 +180,20 @@ section {
     transform: translateY(-3px);
 }
 
+/* --- 通常のリンク（実績内容などにあるリンク）のスタイル --- */
+a {
+    color: var(--accent); /* ネオンっぽい水色にする */
+    text-decoration: underline; /* リンクと分かりやすく下線を引く */
+    text-shadow: 0 0 5px rgba(0, 242, 255, 0.4); /* 軽く発光させて黒背景でも埋もれないようにする */
+    transition: 0.3s;
+}
+
+/* リンクにマウスを乗せたときの動き */
+a:hover {
+    color: #ffffff; /* ホバー時は白く光らせる */
+    text-shadow: 0 0 10px var(--accent); /* 発光を強くして目立たせる */
+}
+
 .log-container {
     max-height: 400px;
     overflow-y: auto;
