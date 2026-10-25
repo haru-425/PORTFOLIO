@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    initCanvas();
+    // 装飾用の背景アニメーションは起動しない。
     loadTechLogs();
 });
 

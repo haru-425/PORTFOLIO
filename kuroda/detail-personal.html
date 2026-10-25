@@ -21,6 +21,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>黒田 大智 - 個人制作</title>
+    <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/style_personal.css" />
     <link
       rel="stylesheet"
@@ -28,7 +29,8 @@
     />
   </head>
 
-  <body>
+  <body class="personal-detail">
+    <a class="skip-link" href="#main-content">本文へスキップ</a>
     <canvas id="bg-canvas"></canvas>
 
     <header>
@@ -38,7 +40,7 @@
         </div>
         <nav>
           <a href="index.html#profile">Profile</a>
-          <a href="index.html#projects">個人制作</a>
+          <a href="index.html#projects" aria-current="page">個人制作</a>
           <a href="index.html#team-projects">チーム制作</a>
           <a href="index.html#skills">スキル</a>
           <!-- <a href="index.html#tech-log">Log</a> -->
@@ -46,155 +48,124 @@
       </div>
     </header>
 
-    <main class="detail-page-wrapper">
-      <section class="fade-in visible">
-        
-        <div class="detail-header">
-          <h1 class="project-title-large">CurryEngine</h1>
-        </div>
-
-        <div class="single-column-container">
-
-          <nav class="toc-top glass-card">
-            <h2 class="toc-title"><i class="fas fa-list"></i> 目次</h2>
-            <ul>
-              <li><a href="#overview">概要</a></li>
-              <li><a href="#description">作品説明</a></li>
-              <li><a href="#implementation">実装内容</a></li>
-              <li><a href="#scene-editor">レベルエディタ</a></li>
-              <li><a href="#shader-editor"> シェーダーエディタ</a></li>
-              <li><a href="#csharp"> C#スクリプティング</a></li>
-              <li><a href="#physx"> PhysXを用いた物理演算</a></li>
-              <li><a href="#effect"> エフェクトエディタ</a></li>
-              <li><a href="#other"> その他に実装した機能</a></li>
-              <li><a href="#future">今後</a></li>
-            </ul>
-          </nav>
-        
-          <section id="overview" class="glass-card content-section">
-            <h3><i class="fas fa-info-circle"></i> 概要</h3>
+    <main id="main-content" class="detail-page-wrapper personal-page">
+ <div class="detail-header" id="page-top">
+  <a class="back-link" href="index.html#projects">← 個人制作一覧へ</a>
+  <span class="tag">個人制作 / ゲームエンジン</span>
+  <h1 class="project-title-large">CurryEngine</h1>
+  <p class="project-tagline">試して、確かめて、すぐに改善する。</p>
+  <p class="hero-description">C++ / DirectX11で開発する自作ゲームエンジン。リフレクションによる編集・保存処理の共通化と、C# APIの自動生成に取り組んでいます。</p>
+  <div class="hero-tech" aria-label="使用技術"><span>C++</span><span>C# / .NET CoreCLR</span><span>DirectX11</span><span>PhysX</span></div>
+ <nav class="technical-highlights" aria-label="注目の内部設計"><a href="#reflection"><span>設計の基盤</span><strong>C++自作リフレクション</strong><small>メタ情報の抽出からUI・保存処理へ →</small></a><a href="#csharp"><span>言語間連携</span><strong>C# APIの自動生成</strong><small>バインディングとJSONでのデータ交換 →</small></a></nav>
+ </div>
+ <nav class="toc-top glass-card" aria-label="ページ内目次"><span class="toc-label">CONTENTS</span><ol><li><a href="#overview"><span>01</span>基本情報</a></li><li><a href="#reflection"><span>02</span>C++自作リフレクション</a></li><li><a href="#csharp"><span>03</span>C#の内部設計</a></li><li><a href="#asset-metadata"><span>04</span>アセット管理</a></li><li><a href="#description"><span>05</span>目標とこだわり</a></li><li><a href="#architecture"><span>06</span>機能の全体像</a></li><li><a href="#implementation"><span>07</span>各種エディタ・物理演算</a></li><li><a href="#future"><span>08</span>今後の開発</a></li></ol></nav>
+ <section id="overview" class="glass-card content-section">
+            <h2><span class="section-index">01</span> 基本情報</h2>
             <div class="detail-container">
               <div class="detail-left">
                 <div class="video-wrapper">
-                  <iframe
+                  <iframe title="CurryEngineの紹介動画"
                     src="https://www.youtube.com/embed/M4sRrUXaKoM"
                     allowfullscreen>
                   </iframe>
                 </div>
               </div>              
             
-              <table class="spec-table" class="detail-right">
+              <table class="spec-table detail-right">
                 <tr>
-                  <th>作品ジャンル</th>
+                  <th scope="row">作品ジャンル</th>
                   <td> ゲームエンジン</td>
                 </tr>
                 <tr>
-                  <th>コンセプト</th>
+                  <th scope="row">コンセプト</th>
                   <td> ラピッドイテレーションを実現するゲームエンジン</td>
                 </tr>
                 <tr>
-                  <th>制作期間</th>
-                  <td> 2025年3月 ～ 現在（約1年半）</td>
+                  <th scope="row">制作期間</th>
+                  <td> 2025年3月 ～ 現在</td>
                 </tr>
                 <tr>
-                  <th>制作人数</th>
+                  <th scope="row">制作人数</th>
                   <td> 1人（個人制作）</td>
                 </tr>
                 <tr>
-                  <th>開発環境</th>
+                  <th scope="row">開発環境</th>
                   <td> Visual Studio / C++ / C# / DirectX11</td>
                 </tr>
               </table>
             </div>
           </section>
-        
-          <section id="description" class="glass-card content-section">
-            <h3><i class="fas fa-bullseye"></i> 作品説明</h3>
-            <p class="description-text">
-              CurryEngineは、ゲーム開発における開発効率の向上を目的として開発しているゲームエンジンです。
-              ゲーム開発では、アイデアを素早く試し、改善を繰り返せる環境が重要だと考えています。
-              そのため、変更を素早く反映できる仕組みや各種エディタ機能を実装し、ラピッドイテレーションを実現する開発環境の構築に取り組んでいます。
-              現在は、シェーダーエディタ、C#スクリプティング、PhysXを用いた物理演算、エフェクトエディタなどの機能を実装しています。
-              今後も、ゲーム制作をより快適かつ効率的に行えるよう、機能の拡充を続けていく予定です。
-            </p>
-            <div class="link-area">
-              <a href="https://github.com/Sakana00123/CurryEngine.git" class="github-btn" target="_blank">
-                <i class="fab fa-github"></i> View Code on GitHub
-              </a>
-            </div>
-          </section>
 
-        
-          <section id="implementation" class="glass-card content-section">
-            <h3><i class="fas fa-cogs"></i> 実装内容</h3>
-
-            <section id="scene-editor" class="glass-card content-section">
-              <h3><i class="fas fa-microchip"></i> レベルエディタ</h3>
-              <div class="detail-container">
-                <div class="detail-left">
-                  <div class="image-wrapper">
-                    <img src="resources/SceneEditor.gif" alt="シーンエディタのデモ" loading="lazy">
-                  </div>
-                </div>
-                <div class="detail-right">
-                  <ul class="tech-list">
-                    <li>
-                      <!-- <strong>実装理由</strong> -->
-                      <!-- ゲーム開発では、シーンの構築やオブジェクトの配置を頻繁に行うため、効率的に作業できるようシーンエディタを実装しました。 -->
-                      オブジェクトを視覚的に配置・編集できるようにするため、レベルエディタを実装しました。
-                    </li>
-                    <li>
-                      <!-- オブジェクトの配置・移動・回転・スケーリングを、直感的な操作で行うことができます。 -->
-                      オブジェクトの配置・移動・回転・スケーリングに加え、Inspectorからコンポーネントの追加やパラメータの編集ができます。
-                    </li>
-                    <li>
-                      Undo/Redoや複数選択など、レベル制作で頻繁に使用する機能を実装しました。
-                      <!-- また、シーンのヒエラルキー表示、インスペクタによるコンポーネント編集、Undo/Redo、複数オブジェクトの同時選択・編集にも対応しています。 -->
-                    </li>
-                    <li>
-                      今後は、特定のゲームに合わせた専用ツールを開発し、レベル設計からゲームプレイの調整までを効率的に行える環境を目指します。
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <section id="shader-editor" class="glass-card content-section">
-              <h3><i class="fas fa-microchip"></i> シェーダーエディタ</h3>
-              <div class="detail-container">
-                <div class="detail-left">
-                  <div class="image-wrapper">
-                    <img src="resources/Shader_HotReload.gif" alt="HotReload機能のデモ" loading="lazy">
-                  </div>
-                </div>
-                <div class="detail-right">
-                  <ul class="tech-list">
-                    <li>
-                      <!-- <strong>実装理由</strong> -->
-                      ゲームの見た目を効率的に調整できるよう、シェーダーエディタを実装しました。
-                    </li>
-                    <li>
-                      エディタ上でテクスチャの変更やシェーダーパラメータの編集を行い、描画結果をリアルタイムに確認できます。
-                    </li>
-                    <li>
-                      シェーダーのホットリロードに対応しており、コードの変更をエンジンの再起動なしで反映できます。
-                    </li>
-                    <li>
-                      今後はマテリアルエディタへ発展させ、マテリアルの管理機能やノードベースでの編集にも対応する予定です。
-                      <!-- 今後は、パラメータや使用するシェーダーをマテリアルとして保存・管理できる機能を実装し、マテリアルエディタへ発展させていく予定です。さらに、プログラマー以外でも扱いやすいよう、ノードベースで直感的にシェーダーを編集できる機能の実装も目指しています。 -->
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <section id="csharp" class="glass-card content-section">
-              <h3><i class="fas fa-microchip"></i> C#スクリプティング</h3>
-              <div class="detail-container">
+<section id="reflection" class="glass-card content-section technical-section">
+ <h2><span class="section-index">02</span> C++自作リフレクション</h2>
+ <p class="section-lead">クラスの情報を一度抽出し、編集UI・保存処理・API生成に活用する。</p>
+ <p>Unreal Engineのリフレクションを参考に、C++のクラス名・メンバー変数の名前や型・属性を扱う仕組みを自作しました。インスペクタの表示やJSONへの保存処理を、メンバー変数を追加するたびに手書きする作業を減らすことが目的です。</p>
+ <h3>外部パーサー方式を採用した理由</h3>
+ <p>手動で登録用マクロを記述する方式と比較し、コンパイル前にコードを走査する外部パーサー方式を採用しました。パーサー自体の実装は必要ですが、抽出した情報をエディタだけでなく、C#との連携にも再利用できる構成にしています。</p>
+ <figure class="technical-diagram">
+  <figcaption>ビルド時の処理フロー</figcaption>
+  <ol class="flow-steps">
+   <li><span class="diagram-label">01 / 入力</span><strong>C++ヘッダー</strong><p>クラス・変数・属性を定義。マクロを解析の目印にする。</p></li>
+   <li><span class="diagram-label">02 / 解析</span><strong>メタパーサー</strong><p>ビルド時に起動し、コードを走査。regexで構文を検知してメタ情報を抽出。</p></li>
+   <li><span class="diagram-label">03 / 生成</span><strong>reflect.h</strong><p>収集したメタ情報から、リフレクション用ヘッダーを自動生成。</p></li>
+   <li><span class="diagram-label">04 / コンパイル</span><strong>エンジンをビルド</strong><p>生成したヘッダーをインクルードし、通常のコンパイラでビルド。</p></li>
+  </ol>
+ </figure>
+ <h3>属性からクラスまでを保持するデータ構造</h3>
+ <p>解析した情報は、ファイル・クラス・フィールド・属性の階層で管理します。属性は名前だけでなく引数も保持し、フィールドの型情報やクラスの継承情報とあわせて扱います。</p>
+ <figure class="technical-diagram">
+  <figcaption>パーサー内部のメタ情報の関係</figcaption>
+  <ol class="metadata-tree">
+   <li><code>FileInfo</code><span>path / classes</span><small>ファイルのパスと、含まれるクラス</small></li>
+   <li><code>ClassInfo</code><span>name / bases / fields / reflect</span><small>クラス名・基底クラス・フィールド・リフレクション対象フラグ</small></li>
+   <li><code>FieldInfo</code><span>type / name / attributes</span><small>変数の型・名前・付与された属性</small></li>
+   <li><code>AttributeInfo</code><span>name / args</span><small>属性名と引数</small></li>
+  </ol>
+ </figure>
+ <div class="source-images">
+  <figure><a href="resources/reflection/field-attribute-info.png" target="_blank" rel="noopener noreferrer"><img src="resources/reflection/field-attribute-info.png" alt="AttributeInfoはnameとargs、FieldInfoはtype、name、attributesを保持するC++コード" loading="lazy" width="714" height="444"></a><figcaption>属性とフィールドの定義（画像を開いて拡大）</figcaption></figure>
+  <figure><a href="resources/reflection/class-file-info.png" target="_blank" rel="noopener noreferrer"><img src="resources/reflection/class-file-info.png" alt="ClassInfoはname、bases、fields、reflect、FileInfoはpathとclassesを保持するC++コード" loading="lazy" width="654" height="458"></a><figcaption>クラスとファイルの定義（画像を開いて拡大）</figcaption></figure>
+ </div>
+ <p class="source-note">出典：自身の発表資料「C++で自作リフレクション」p.8。上の図は資料の構造をもとに再構成しています。</p>
+ <h3>メタ情報を利用する側の設計</h3>
+ <figure class="technical-diagram">
+  <figcaption>共通のメタ情報から、それぞれの機能へ</figcaption>
+  <div class="shared-metadata"><strong>クラス・フィールド・属性のメタ情報</strong><span>変数名と型情報をコードから参照</span></div>
+  <div class="metadata-uses">
+   <div><strong>インスペクタ</strong><p>フィールドのメタ情報を使い、プロパティの編集UIを自動生成。</p><a href="#scene-editor">レベルエディタのデモへ →</a></div>
+   <div><strong>シリアライズ</strong><p>型情報を文字列で取得し、型に応じたJSONの保存処理を共通化。</p></div>
+   <div><strong>C# API生成</strong><p>C++のメタ情報からエンジンAPIと連携用コードを自動生成。</p><a href="#csharp">連携の内部設計へ →</a></div>
+  </div>
+ </figure>
+ <div class="design-result"><h4>実装によって減らした作業</h4><p>対応済みの型では、個々のメンバー変数に対するインスペクタ表示や保存処理を共通の仕組みに任せられます。メタ情報を複数の機能で利用することで、登録や連携コードを手作業で増やす負担を抑えています。</p></div>
+ <details class="technical-details"><summary>実装で直面した課題と対応（発表時点）</summary><p>新しい型に対応する際は、インスペクタ表示とシリアライズの型登録が必要でした。シリアライズ側ではマクロにより登録処理を1行にまとめ、未対応の型のUIは必要に応じてImGuiで個別に実装していました。</p><p>また、privateメンバーへのアクセスで詰まり、発表時点では対象の変数をpublicにする形で対応していました。自動化の仕組みと、型ごとに追加対応が必要な範囲を分けて実装しています。</p><p class="source-note">発表資料 p.9に記載した課題と対応です。</p></details>
+</section>
+<section id="csharp" class="glass-card content-section feature-section">
+              <h2><span class="section-index">03</span> C#スクリプトの内部設計</h2><p class="section-lead">リフレクションのメタ情報を、言語間の連携にも使う。</p>
+              
+ <h3>メタ情報からエンジンAPIを自動生成</h3>
+ <p>C++リフレクションで得たメタ情報を入力として、C#から利用するエンジンAPIを生成しています。C++パーサーを拡張し、連携に必要なバインディングコードも生成することで、手動でラッパーコードを記述する作業を減らしました。</p>
+ <figure class="technical-diagram">
+  <figcaption>API生成の流れと、実行時のデータ受け渡し</figcaption>
+  <div class="diagram-phase">コード生成時</div>
+  <ol class="flow-steps three-steps">
+   <li><strong>C++のメタ情報</strong><p>リフレクション用に抽出した情報を再利用</p></li>
+   <li><strong>API・バインディング生成</strong><p>エンジンとの連携に必要なコードを自動生成</p></li>
+   <li><strong>C#エンジンAPI</strong><p>ゲームロジックからエンジンの機能を利用</p></li>
+  </ol>
+  <div class="diagram-phase">実行時 / プロパティデータ</div>
+  <div class="interop-flow"><div><strong>C++側</strong><span>エンジン・エディタ</span></div><div class="interop-transfer"><span aria-hidden="true">↔</span><strong>JSON文字列</strong><small>プロパティのデータを受け渡す</small></div><div><strong>C#側</strong><span>スクリプト</span></div></div>
+ </figure>
+ <h3>プロパティデータはJSON文字列でやり取り</h3>
+ <p>C++側とC#側の間では、プロパティのデータをJSON文字列で受け渡しています。APIを生成する工程と、実行時にプロパティ値をやり取りする経路を組み合わせて、エディタとスクリプトを連携させています。</p>
+ <h3>CoreCLRとホットリロードによる反復開発</h3>
+ <p>エンジンはC++、変更頻度の高いゲームロジックはC#で記述します。.NET CoreCLRを組み込み、アセンブリを再読み込みすることで、エンジンを再起動せずにコードの変更を反映できるようにしました。</p>
+ <div class="design-result"><h4>ビルド待ちの短縮と、連携コードの保守</h4><p>ゲームロジックのビルド時間を数分から数秒に短縮しました。さらに、メタ情報からのAPI生成によって手動のラッパー実装を減らし、エンジンの機能追加とスクリプト側の連携を効率化しています。</p></div>
+ <h3>スクリプト機能のデモと実装内容</h3>
+<div class="detail-container">
                 <div class="detail-left">
                   <div class="video-wrapper">
-                    <iframe
-                      src="https://www.youtube.com/embed/mggzrCH4DdA"
+                    <iframe title="C#スクリプティングのデモ動画" loading="lazy" src="https://www.youtube.com/embed/mggzrCH4DdA"
                       allowfullscreen>
                     </iframe>
                   </div>
@@ -204,33 +175,104 @@
                 </div>
                 <div class="detail-right">
                   <ul class="tech-list">
-                    <li>
-                      ゲームロジックの開発効率を高めるため、C#スクリプティング機能を実装しました。エディタと連携し、スクリプトの追加や設定、動作確認を効率的に行えます。
+<li><strong class="point-label">エディタとの連携</strong>スクリプトの追加や設定、動作確認をエディタと連携して行えます。</li>
+<li><strong class="point-label">変更の反映</strong>動画ではC#のホットリロード、GIFではスクリプト機能の動作を紹介しています。</li>
+</ul>
+                </div>
+              </div>
+            </section>
+
+<section id="asset-metadata" class="glass-card content-section technical-section">
+ <h2><span class="section-index">04</span> アセットのメタ情報管理</h2>
+ <p class="section-lead">アセットに付随する情報を、メタファイルに記録する。</p>
+ <p>アセットのメタファイルには、GUID・アセット種別・インポート設定・ファイルパスを記録しています。アセット本体とは別に、識別情報や読み込み時の設定をまとめて管理する構成にしました。</p>
+ <figure class="technical-diagram">
+  <figcaption>アセット本体とメタ情報の管理単位</figcaption>
+  <div class="asset-pair"><div><span class="diagram-label">アセット本体</span><strong>アセットのデータ</strong></div><span class="asset-relation">対応する<br><span aria-hidden="true">↔</span></span><div><span class="diagram-label">メタファイル</span><strong>GUID / アセット種別</strong><strong>インポート設定 / ファイルパス</strong></div></div>
+ </figure>
+
+ <h3>メタファイルに記録する情報</h3>
+ <dl class="asset-fields">
+  <div><dt>GUID</dt><dd>アセットを識別するためのID。</dd></div>
+  <div><dt>アセット種別</dt><dd>アセットがどの種類のデータかを示す情報。</dd></div>
+  <div><dt>インポート設定</dt><dd>アセットを取り込む際に使用する設定。</dd></div>
+  <div><dt>ファイルパス</dt><dd>アセットのファイルが存在する場所。</dd></div>
+ </dl>
+</section>
+ <section id="description" class="glass-card content-section">
+  <h2><span class="section-index">05</span> 目標とこだわり</h2>
+  <p class="section-lead">アイデアを素早く試し、改善を繰り返せる開発環境をつくる。</p>
+  <p>ゲーム開発では、変更のたびに発生するビルドや再起動が、試行錯誤の妨げになります。CurryEngineでは、変更をすぐに確認できる仕組みと各種エディタを実装し、ゲーム制作の効率向上に取り組んでいます。</p>
+  <div class="goal-grid">
+   <div><h3>変更をすぐに反映</h3><p>C#とシェーダーのホットリロードで、エンジンを再起動せずに変更を確認できます。</p><a href="#csharp">C#の実装を見る →</a></div>
+   <div><h3>視覚的に調整</h3><p>配置・描画・演出をエディタ上で編集し、制作と動作確認を繰り返しやすくしています。</p><a href="#scene-editor">エディタを見る →</a></div>
+   <div><h3>実際の制作で改善</h3><p>チーム制作でもツールを使用してもらい、メンバーのフィードバックを改善に活かしています。</p><a href="#effect">活用例を見る →</a></div>
+  </div>
+  <a href="https://github.com/Sakana00123/CurryEngine.git" class="github-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> ソースコードを見る <span class="external-note">（GitHub・別タブ）</span></a>
+ </section>
+ <section id="architecture" class="glass-card content-section">
+  <h2><span class="section-index">06</span> 機能の全体像</h2>
+  <p>C++のエンジンを基盤に、C#によるゲームロジックと、制作を支える編集機能を組み合わせています。</p>
+  <div class="engine-map" aria-label="エンジンの機能構成">
+   <div class="engine-layer"><span>ゲームロジック</span><strong>C#スクリプティング</strong><small>.NET CoreCLR / ホットリロード / バインディングの自動生成</small></div>
+   <div class="engine-layer engine-core"><span>エンジン基盤</span><strong>C++ / DirectX11 / PhysX</strong><small>描画・物理演算を支える機能</small></div>
+   <div class="engine-layer"><span>制作ツール</span><strong>各種エディタ</strong><small>レベル / シェーダー / エフェクト / アニメーション</small></div>
+  </div>
+  <p class="muted-note">各機能の役割をまとめた図です。ランタイムとエディタの分離は、今後の開発項目としています。</p>
+ </section>
+ <section id="implementation" class="implementation-section">
+  <h2><span class="section-index">07</span> 各種エディタ・物理演算</h2>
+  <p>実装の目的、仕組み、改善につながった点を、デモとあわせて紹介します。</p>
+  <nav class="feature-nav" aria-label="実装内容の目次"><a href="#scene-editor">01 レベルエディタ</a><a href="#shader-editor">02 シェーダーエディタ</a><a href="#physx">03 PhysXを用いた物理演算</a><a href="#effect">04 エフェクトエディタ</a><a href="#other">05 アニメーションエディタ</a></nav>
+  <section id="scene-editor" class="glass-card content-section feature-section">
+              <div class="feature-heading"><span class="feature-number">01</span><div><h3>レベルエディタ</h3><p>配置からパラメータ調整まで、画面上で編集。</p></div></div>
+              <div class="detail-container">
+                <div class="detail-left">
+                  <div class="image-wrapper">
+                    <img src="resources/SceneEditor.gif" alt="シーンエディタのデモ" loading="lazy">
+                  </div>
+                </div>
+                <div class="detail-right">
+                  <ul class="tech-list">
+                    <li><strong class="point-label">目的</strong>オブジェクトを視覚的に配置・編集できるようにするため、レベルエディタを実装しました。
                     </li>
-
-                    <li>
-                      <!-- 当初はゲームコードもC++で実装していましたが、ゲームロジックは変更頻度が高く、ビルドや再起動を繰り返すことが開発効率の低下につながっていました。そのため、ゲームコードのみをC#へ移行し、エンジンはC++で開発する構成に変更しました。 -->
-                      従来はゲームコードもC++で記述していましたが、変更のたびに長いビルド時間が発生していました。そこで、エンジンをC++、ゲームロジックをC#で開発する構成に変更しました。
+                    <li><strong class="point-label">実装</strong>オブジェクトの配置・移動・回転・スケーリングに加え、Inspectorからコンポーネントの追加やパラメータの編集ができます。
                     </li>
-
-                    <!-- <li>
-                      初期実装は2026/03/10～2026/03/25に行い、その後、バグ修正や機能追加を進め、約1か月かけて実用レベルまで完成させました。
-                    </li> -->
-
-                    <li>
-                      .NET CoreCLRを組み込み、アセンブリの再読み込みによるホットリロードを実現しました。エンジンを再起動せずにコードの変更を反映でき、ビルド時間も数分から数秒に短縮しました。
+                    <li><strong class="point-label">工夫</strong>Undo/Redoや複数選択など、レベル制作で頻繁に使用する機能を実装しました。
+                      
                     </li>
-
-                    <li>
-                      C++パーサーを拡張し、C#との連携に必要なバインディングコードを自動生成する仕組みを実装しました。手動でのラッパーコード作成を削減し、機能追加や保守を効率化しています。
+                    <li><strong class="point-label">今後</strong>今後は、特定のゲームに合わせた専用ツールを開発し、レベル設計からゲームプレイの調整までを効率的に行える環境を目指します。
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+<section id="shader-editor" class="glass-card content-section feature-section">
+              <div class="feature-heading"><span class="feature-number">02</span><div><h3>シェーダーエディタ</h3><p>コードの変更を、再起動せず描画に反映。</p></div></div>
+              <div class="detail-container">
+                <div class="detail-left">
+                  <div class="image-wrapper">
+                    <img src="resources/Shader_HotReload.gif" alt="HotReload機能のデモ" loading="lazy">
+                  </div>
+                </div>
+                <div class="detail-right">
+                  <ul class="tech-list">
+                    <li><strong class="point-label">目的</strong>ゲームの見た目を効率的に調整できるよう、シェーダーエディタを実装しました。
+                    </li>
+                    <li><strong class="point-label">実装</strong>エディタ上でテクスチャの変更やシェーダーパラメータの編集を行い、描画結果をリアルタイムに確認できます。
+                    </li>
+                    <li><strong class="point-label">工夫</strong>シェーダーのホットリロードに対応しており、コードの変更をエンジンの再起動なしで反映できます。
+                    </li>
+                    <li><strong class="point-label">今後</strong>今後はマテリアルエディタへ発展させ、マテリアルの管理機能やノードベースでの編集にも対応する予定です。
+                      
                     </li>
                   </ul>
                 </div>
               </div>
             </section>
 
-            <section id="physx" class="glass-card content-section">
-              <h3><i class="fas fa-microchip"></i> PhysXを用いた物理演算</h3>
+<section id="physx" class="glass-card content-section feature-section">
+              <div class="feature-heading"><span class="feature-number">03</span><div><h3>PhysXを用いた物理演算</h3><p>物理特性や当たり判定をコンポーネントで設定。</p></div></div>
               <div class="detail-container">
                 <div class="detail-left">
                   <div class="image-wrapper">
@@ -239,107 +281,76 @@
                 </div>
                 <div class="detail-right">
                   <ul class="tech-list">
-                    <li>
-                      <!-- <strong>実装理由</strong> -->
-                      <!-- ゲーム開発において物理演算は重要な機能だと考え、リアルな物理挙動を実現するため、PhysXを導入しました。 -->
-                      ゲーム内で物理挙動や衝突判定を実現するため、物理エンジンのPhysXを導入しました。
+                    <li><strong class="point-label">目的</strong>ゲーム内で物理挙動や衝突判定を実現するため、物理エンジンのPhysXを導入しました。
                     </li>
-                    <li>
-                      <!-- PhysXを採用した理由は、Unityで採用されている実績のある物理エンジンだからです。私自身もUnityを長く使用しており、そのワークフローを参考にしています。 -->
-                      Unityでも採用されている実績があり、使い慣れたワークフローを参考にできることから採用しました。
+                    <li><strong class="point-label">採用理由</strong>Unityでも採用されている実績があり、使い慣れたワークフローを参考にできることから採用しました。
                     </li>
-                    <li>
-                      Rigidbodyや各種Colliderをコンポーネントとして実装し、エディタ上で物理特性や当たり判定を設定できるようにしました。
+                    <li><strong class="point-label">実装</strong>Rigidbodyや各種Colliderをコンポーネントとして実装し、エディタ上で物理特性や当たり判定を設定できるようにしました。
                     </li>
-                    <li>
-                      <!-- 現在はRigidBodyやColliderなどの基本機能を実装しています。今後はジョイント機能も実装し、より多様な物理挙動を表現できるようにしていく予定です。 -->
-                      今後はジョイント機能などにも対応し、より幅広い物理表現を実現する予定です。
+                    <li><strong class="point-label">今後</strong>今後はジョイント機能などにも対応し、より幅広い物理表現を実現する予定です。
                     </li>
                   </ul>
                 </div>
               </div>
             </section>
-
-            <section id="effect" class="glass-card content-section">
-              <h3><i class="fas fa-microchip"></i> エフェクトエディタ</h3>
+<section id="effect" class="glass-card content-section feature-section">
+              <div class="feature-heading"><span class="feature-number">04</span><div><h3>エフェクトエディタ</h3><p>演出をその場で調整し、チームの制作にも活用。</p></div></div>
               <div class="detail-container">
                 <div class="detail-left">
                   <div class="video-wrapper">
-                    <iframe
-                      src="https://www.youtube.com/embed/pJBAnBy--k8"
+                    <iframe title="エフェクトエディタのデモ動画" loading="lazy" src="https://www.youtube.com/embed/pJBAnBy--k8"
                       allowfullscreen>
                     </iframe>
                   </div>
                 </div>
                 <div class="detail-right">
                   <ul class="tech-list">
-                    <li>
-                      <!-- <strong>実装理由</strong> -->
-                      <!-- ゲームにおいてエフェクトは演出に欠かせない要素であるため、エフェクトエディタを実装しました。 -->
-                      ゲーム内の演出を効率的に制作・調整するため、エフェクトエディタを実装しました。
+                    <li><strong class="point-label">目的</strong>ゲーム内の演出を効率的に制作・調整するため、エフェクトエディタを実装しました。
                     </li>
-                    <li>
-                      エフェクトのパラメータをリアルタイムに編集でき、設定内容をJSON形式で保存・読み込みできます。
+                    <li><strong class="point-label">実装</strong>エフェクトのパラメータをリアルタイムに編集でき、設定内容をJSON形式で保存・読み込みできます。
                     </li>
-                    <li>
-                      チーム制作で実際に使用してもらい、メンバーからのフィードバックをもとに操作性や機能の改善に取り組んでいます。
+                    <li><strong class="point-label">制作での活用</strong>チーム制作で実際に使用してもらい、メンバーからのフィードバックをもとに操作性や機能の改善に取り組んでいます。
                     </li>
-                    <li>
-                      今後はカーブエディタの追加や、ヒエラルキーとの操作性の統一を進め、より直感的にエフェクトを制作できる環境を目指します。
+                    <li><strong class="point-label">今後</strong>今後はカーブエディタの追加や、ヒエラルキーとの操作性の統一を進め、より直感的にエフェクトを制作できる環境を目指します。
                     </li>
                   </ul>
                 </div>
               </div>
             </section>
-            
-            <section id="other" class="glass-card content-section">
-              <h3><i class="fas fa-microchip"></i> その他に実装した機能</h3>
-              <div class="detail-container">
-                <div class="detail-left">
-                  <div class="image-wrapper">
-                    <img src="resources/Animation_Editor.gif" alt="アニメーションエディタ" loading="lazy">
-                  </div>
-                </div>
+<section id="other" class="glass-card content-section feature-section">
+              <div class="feature-heading"><span class="feature-number">05</span><div><h3>アニメーションエディタ</h3><p>キャラクターのアニメーションを視覚的に編集。</p></div></div>
+              <div class="text-only-feature">
                 <div class="detail-right">
                   <ul class="tech-list">
-                    <li>
-                      アニメーションエディタを実装し、キャラクターのアニメーションを視覚的に編集できる環境を提供しました。
+                    <li><strong class="point-label">目的</strong>アニメーションエディタを実装し、キャラクターのアニメーションを視覚的に編集できる環境を提供しました。
                     </li>
                   </ul>
                 </div>
               </div>
 
           </section>
-
-          <section id="future" class="glass-card content-section">
-            <h3><i class="fas fa-tools"></i> 今後</h3>
+ </section>
+ <section id="future" class="glass-card content-section">
+            <h2><span class="section-index">08</span> 今後の開発</h2>
             <div class="future-content">
-              <!-- <p>開発効率と使いやすさをさらに向上させるため、以下の機能の実装・改善に取り組んでいきます。</p> -->
+              
               <p>ラピッドイテレーションをさらに追求し、汎用ゲームエンジンとしての完成度を高めるため、以下の機能の実装・改善に取り組んでいきます。</p>
               <ul class="tech-list">
                 <li>ランタイムとエディタの分離による保守性・拡張性の向上</li>
-                <!-- <li>アセットの非同期ロードを実装し、ロード中でも操作を継続できるようにする</li> -->
+                
                 <li>アセットの非同期ロードや管理機能の改善による操作性の向上</li>
-                <!-- <li>ランタイムとエディタを分離し、保守性と拡張性を向上させる</li> -->
+                
                 <li>C#スクリプティングの安定性向上とホットリロード機能の改善</li>
-                <!-- <li>シェーダーエディタをマテリアルエディタへ発展させ、ノードベースで直感的に編集できる環境を実現する</li> -->
+                
                 <li>マテリアルシステムの拡張による描画表現の自由度向上</li>
               </ul>
-              <!-- <p>
-                また、将来的にはカリングやLODなどの描画最適化を実装し、
-                大規模なシーンでも安定したフレームレートを維持できるエンジンを目指しています。
-              </p> -->
-              <!-- <p>
-                今後もラピッドイテレーションを追求し、ゲーム制作者が素早く試行錯誤できる開発環境を目指して改善を続けていきます。
-              </p> -->
+              
+              
             </div>
           </section>
-
-        </div> </section>
-
-        <!-- 画面下部のプライバシーバナー -->
-        <script src="js/banner.js"></script>
-    </main>
+ <div class="page-end"><a class="back-link" href="index.html#projects">← 個人制作一覧へ</a><a href="#page-top">ページの先頭へ ↑</a></div>
+</main>
+    <script src="js/banner.js"></script>
 
     <script src="./js/script.js"></script>
   </body>

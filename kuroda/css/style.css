@@ -620,4 +620,29 @@ h3 {
 
 .banner-btn:hover {
   background-color: #7dd3fc;
-}
+}/* 共通の静的・高コントラストテーマ */
+:root { --bg-dark: #fff; --text: #26343b; --accent: #216575; --accent-purple: #385b6b; --glass: #f5f7f8; }
+html { scroll-behavior: auto; }
+body { font-family: 'Segoe UI', 'Yu Gothic', Meiryo, sans-serif; line-height: 1.85; }
+#bg-canvas { display: none; }
+header { background: #2d3b43; border-bottom: 0; backdrop-filter: none; padding: 13px 0; color: #fff; }
+header nav a { color: #f2f5f6; }
+header nav a:hover, header nav a[aria-current] { color: #fff; text-decoration: underline; text-underline-offset: 6px; }
+nav a { color: var(--accent); }
+a, a:hover, .project-title-large, .text-neon { text-shadow: none; }
+a { text-underline-offset: 4px; }
+a:hover { color: #154957; }
+a:focus-visible, summary:focus-visible { outline: 3px solid #216575; outline-offset: 4px; }
+.glass-card { background: var(--glass); border: 1px solid #dce3e6; border-radius: 6px; backdrop-filter: none; box-shadow: none; }
+h1, h2, h3, .project-title-large, .team-card h3 { color: #233740; }
+h3 { border-bottom-color: #d7e1e5; }
+.fade-in, .fade-in.visible { opacity: 1; transform: none; transition: none; will-change: auto; }
+.btn-detail, .btn-detail:hover { background: #216575; color: #fff; box-shadow: none; transform: none; }
+.github-btn, .github-btn:hover { background: #2d3b43; color: #fff; box-shadow: none; }
+.skill-card img, .skill-card i, .skill-card:hover img, .skill-card:hover i { filter: none; transform: none; }
+.profile-photo { background: #416877; }
+.profile-photo::after { display: none; }
+.text-neon { color: #233740; }
+.spec-info th, .spec-info td { border-bottom-color: #dce3e6; }
+.cookie-banner { background: #fff; color: #26343b; border-color: #c6d3d9; backdrop-filter: none; }
+@media (max-width: 600px) { header nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 16px; } header nav a { margin: 0; } }
