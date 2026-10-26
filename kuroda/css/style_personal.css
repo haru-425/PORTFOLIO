@@ -37,12 +37,10 @@
 .goal-grid a, .page-end a { color: var(--accent); font-size: .9rem; }
 .personal-page .github-btn { width: fit-content; padding: 12px 20px; flex-wrap: wrap; }
 .external-note { font-size: .75rem; font-weight: 400; }
-.engine-map { display: grid; gap: 12px; margin: 24px 0 14px; }
-.engine-layer { display: grid; grid-template-columns: 8em 1fr; gap: 4px 16px; padding: 16px 20px; border: 1px solid #dce3e6; border-radius: 8px; background: #f5f7f8; }
-.engine-layer > span { grid-row: span 2; color: #52646e; font-size: .85rem; align-self: center; }
-.engine-layer strong { color: #233740; font-weight: 600; }
-.engine-layer small { color: #52646e; }
-.engine-core { border-color: #b6cbd3; background: #edf3f5; }
+.engine-map { margin: 24px 0 14px; }
+.engine-map > a { display: block; }
+.engine-map img { display: block; width: 100%; height: auto; }
+.engine-map figcaption { margin-top: 10px; color: #52646e; font-size: .78rem; }
 .muted-note { font-size: .8rem; color: #52646e; margin-bottom: 0; }
 .personal-page .implementation-section { padding: 0; }
 .feature-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
@@ -72,8 +70,6 @@
  .personal-page section { padding: 20px 16px; }
  .toc-top { padding: 16px; }
  .toc-top ol { gap: 8px 18px; }
- .engine-layer { grid-template-columns: 1fr; padding: 14px; }
- .engine-layer > span { grid-row: auto; }
  .personal-page h2 { font-size: 1.25rem; }
  .personal-page .github-btn { width: 100%; }
  .page-end { flex-wrap: wrap; }
@@ -186,9 +182,9 @@
 .flow-steps li + li::before { left: -20px; }
 .flow-steps p { font-size: .88rem; }
 .flow-steps strong { font-size: 1rem; }
-.metadata-tree li, .engine-layer, .interop-flow > div:not(.interop-transfer), .asset-pair > div { background: #fff; border-color: #c9d5db; }
-.engine-core, .shared-metadata { background: #edf3f5; border-color: #b6cbd3; }
-.engine-layer strong, .metadata-uses strong { color: #233740; }
+.metadata-tree li, .interop-flow > div:not(.interop-transfer), .asset-pair > div { background: #fff; border-color: #c9d5db; }
+.shared-metadata { background: #edf3f5; border-color: #b6cbd3; }
+.metadata-uses strong { color: #233740; }
 .design-result { background: #edf3f5; }
 .source-images img { border-color: #c9d5db; }
 .asset-fields > div, .technical-details { border-color: #dce3e6; }

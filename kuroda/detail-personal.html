@@ -110,11 +110,10 @@
  <section id="architecture" class="glass-card content-section">
   <h2><span class="section-index">03</span> 機能の全体像</h2>
   <p>C++のエンジンを基盤に、C#によるゲームロジックと、制作を支える編集機能を組み合わせています。</p>
-  <div class="engine-map" aria-label="エンジンの機能構成">
-   <div class="engine-layer"><span>ゲームロジック</span><strong>C#スクリプティング</strong><small>.NET CoreCLR / ホットリロード / バインディングの自動生成</small></div>
-   <div class="engine-layer engine-core"><span>エンジン基盤</span><strong>C++ / DirectX11 / PhysX</strong><small>描画・物理演算を支える機能</small></div>
-   <div class="engine-layer"><span>制作ツール</span><strong>各種エディタ</strong><small>レベル / シェーダー / エフェクト / アニメーション</small></div>
-  </div>
+  <figure class="engine-map">
+   <a href="resources/diagram/engine_main.png" target="_blank" rel="noopener noreferrer"><img src="resources/diagram/engine_main.png" alt="CurryHubでプロジェクトを作成・登録し、CurryEngineを起動。エディターでシーン・素材・設定を編集・保存し、ランタイムがプロジェクトとC#のゲームコードを読み込んで実行する構成図。" width="1063" height="476" loading="lazy"></a>
+   <figcaption>ランチャー・エンジン・プロジェクトの関係（画像を開いて拡大）</figcaption>
+  </figure>
   <p class="muted-note">各機能の役割をまとめた図です。ランタイムとエディタの分離は、今後の開発項目としています。</p>
  </section>
 <section id="csharp" class="glass-card content-section feature-section">
