@@ -160,19 +160,62 @@
 
 <section id="reflection" class="glass-card content-section technical-section">
  <h2><span class="section-index">05</span> C++自作リフレクション</h2>
+ <figure class="reflection-overview">
+  <a href="resources/diagram/metadata_generated.png" target="_blank" rel="noopener noreferrer" aria-label="メタ情報から生成するファイルの全体図を拡大"><img src="resources/diagram/metadata_generated.png" alt="C++クラス定義をメタパーサーで解析し、共通のメタ情報から4種類のファイルを生成。Rigidbody.generated.hはエディタとJSON保存・復元に、Rigidbody.generated.cppはエンジンDLLの関数公開に、NativeMethods.Rigidbody.g.csはC#とDLLの接続に、Rigidbody.g.csはゲームロジックからの操作に利用する" width="1123" height="551" loading="lazy"></a>
+  <figcaption>メタ情報の抽出・ファイル生成と、それぞれの利用先（クリックで拡大）</figcaption>
+ </figure>
  <p class="section-lead">クラスの情報を一度抽出し、編集UI・保存処理・API生成に活用する。</p>
  <p>Unreal Engineのリフレクションを参考に、C++のクラス名・メンバー変数の名前や型・属性を扱う仕組みを自作しました。インスペクタの表示やJSONへの保存処理を、メンバー変数を追加するたびに手書きする作業を減らすことが目的です。</p>
  <h3>外部パーサー方式を採用した理由</h3>
  <p>手動で登録用マクロを記述する方式と比較し、コンパイル前にコードを走査する外部パーサー方式を採用しました。パーサー自体の実装は必要ですが、抽出した情報をエディタだけでなく、C#との連携にも再利用できる構成にしています。</p>
- <figure class="technical-diagram">
-  <figcaption>ビルド時の処理フロー</figcaption>
+ <details class="technical-details generation-examples">
+ <summary>生成ファイルのコード例と呼び出し経路</summary>
+ <p>C++の定義から、エディタ・保存処理用の登録情報と、C#連携用のコードを生成します。</p>
+ <figure class="generation-diagram" aria-labelledby="generation-caption">
+  <figcaption id="generation-caption">Rigidbodyの定義と、メタ情報から生成する4種類のコード</figcaption>
+  <div class="generation-input">
+   <h4><span>入力 / C++のコンポーネント定義</span> Rigidbody.h</h4>
+   <p>コンポーネントの設定値と操作を定義。マクロで解析対象と属性を指定し、各コードの生成元にします。</p>
+   <a href="resources/diagram/rigidbody_h.png" target="_blank" rel="noopener noreferrer" aria-label="入力のRigidbody定義を拡大"><img src="resources/diagram/rigidbody_h.png" alt="C_REFLECTとC_PROPERTYを付けたRigidbodyのC++定義。mass、isKinematic、useGravity、useCCDの型と属性を記述" width="1364" height="247" loading="lazy"></a>
+  </div>
+  <div class="generation-parser">
+   <span class="generation-direction" aria-hidden="true">↓</span>
+   <strong>メタパーサーで解析</strong>
+   <p>クラス・継承・フィールド・属性に加え、公開メソッドの引数と戻り値も抽出</p>
+   <div class="generation-metadata"><strong>共通のメタ情報</strong><code>Rigidbody / Component / mass : float / Getter・Setter・Speed …</code></div>
+   <span class="generation-direction" aria-hidden="true">↓</span>
+   <span class="generation-output-label">以下のコードを生成</span>
+  </div>
+  <ol class="generation-outputs">
+   <li>
+    <h4><span>01 / エディタ・保存処理が使うメタ情報</span> Rigidbody.generated.h</h4><div class="generation-description"><p>クラス・プロパティを登録し、インスペクタ表示とJSON保存・復元に利用。指定したSetterを通して、物理エンジンにも変更を反映します。</p></div>
+    <a href="resources/diagram/rigidbody_reflect_h.png" target="_blank" rel="noopener noreferrer" aria-label="生成したリフレクション登録コードを拡大"><img src="resources/diagram/rigidbody_reflect_h.png" alt="REGISTER_CLASSとREGISTER_PROPERTY_WITH_CUSTOM_ACCESSORなどによるRigidbodyの登録コード。massにfloat、GetMass、SetMass、Speed属性を登録" width="1086" height="81" loading="lazy"></a>
+   </li>
+   <li>
+    <h4><span>02 / エンジンDLLの外部公開関数</span> Rigidbody.generated.cpp</h4><div class="generation-description"><p>IDからシーン内のコンポーネントを取得し、C#からの操作を実行。生成したプロパティのSet関数は、メンバーへ直接代入します。</p></div>
+    <a href="resources/diagram/rigidbody_export_cpp.png" target="_blank" rel="noopener noreferrer" aria-label="生成したC++エクスポートコードを拡大"><img src="resources/diagram/rigidbody_export_cpp.png" alt="Rigidbody_GetMassとRigidbody_SetMassなどのC++関数。objectIdからコンポーネントを取得し、メンバー変数を読み書き" width="778" height="481" loading="lazy"></a>
+   </li>
+   <li>
+    <h4><span>03 / 型変換とDLL呼び出しの宣言</span> NativeMethods.Rigidbody.g.cs</h4><div class="generation-description"><p>C++の公開関数に接続する内部宣言。型マップに基づく型の対応付けと、マーシャリング指定をまとめます。</p></div>
+    <a href="resources/diagram/rigidbody_cs_native.png" target="_blank" rel="noopener noreferrer" aria-label="生成したC#のネイティブ関数宣言を拡大"><img src="resources/diagram/rigidbody_cs_native.png" alt="NativeMethodsクラス内のLibraryImportによるRigidbody関数宣言。boolの引数や戻り値にMarshalAsを指定" width="1156" height="454" loading="lazy"></a>
+   </li>
+   <li>
+    <h4><span>04 / ゲームロジックが使うAPI</span> Rigidbody.g.cs</h4><div class="generation-description"><p>ゲームロジック向けのC# API。値を保持せず、IDを添えてNativeMethods経由でC++のコンポーネントを操作します。</p></div>
+    <a href="resources/diagram/rigidbody_cs_api.png" target="_blank" rel="noopener noreferrer" aria-label="生成したC#のRigidbody APIを拡大"><img src="resources/diagram/rigidbody_cs_api.png" alt="C#のRigidbodyクラス。mass、isKinematic、useGravityの各プロパティがNativeMethodsのGetとSetを呼び出す" width="828" height="393" loading="lazy"></a>
+   </li>
+  </ol>
+  <p class="source-note">画像をクリックで拡大。01〜04は共通のメタ情報から生成します。</p>
+ </figure>
+ <figure class="technical-diagram generation-runtime">
+  <figcaption>実行時：生成したC# APIでmassを設定する経路</figcaption>
   <ol class="flow-steps">
-   <li><span class="diagram-label">01 / 入力</span><strong>C++ヘッダー</strong><p>クラス・変数・属性を定義。マクロを解析の目印にする。</p></li>
-   <li><span class="diagram-label">02 / 解析</span><strong>メタパーサー</strong><p>ビルド時に起動し、コードを走査。regexで構文を検知してメタ情報を抽出。</p></li>
-   <li><span class="diagram-label">03 / 生成</span><strong>reflect.h</strong><p>収集したメタ情報から、リフレクション用ヘッダーを自動生成。</p></li>
-   <li><span class="diagram-label">04 / コンパイル</span><strong>エンジンをビルド</strong><p>生成したヘッダーをインクルードし、通常のコンパイラでビルド。</p></li>
+   <li><span class="diagram-label">C# API</span><strong>Rigidbody.mass</strong><p>対象の<code>objectId</code>と設定値を渡す。</p></li>
+   <li><span class="diagram-label">C# / NativeMethods</span><strong>Rigidbody_SetMass</strong><p><code>LibraryImport</code>でC++の公開関数を呼ぶ。</p></li>
+   <li><span class="diagram-label">C++ / 生成した公開関数</span><strong>Rigidbody_SetMass</strong><p>シーンのキャッシュからIDに対応するコンポーネントを取得する。</p></li>
+   <li><span class="diagram-label">C++ / Rigidbody</span><strong>comp-&gt;mass = value</strong><p>メンバーへ直接代入する。属性で指定した<code>SetMass</code>は経由しない。</p></li>
   </ol>
  </figure>
+ </details>
  <h3>属性からクラスまでを保持するデータ構造</h3>
  <p>解析した情報は、ファイル・クラス・フィールド・属性の階層で管理します。属性は名前だけでなく引数も保持し、フィールドの型情報やクラスの継承情報とあわせて扱います。</p>
  <figure class="technical-diagram">

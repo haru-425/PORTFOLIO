@@ -148,6 +148,49 @@
 }
 
 /* アセットのメタファイルに記録する項目 */
+.reflection-overview { margin: 0 0 26px; }
+.reflection-overview a { display: block; }
+.reflection-overview img { display: block; width: 100%; height: auto; background: #fff; }
+.reflection-overview figcaption { margin-top: 10px; font-size: .78rem; line-height: 1.7; color: #52646e; }
+.generation-diagram { margin: 24px 0; padding: 22px; border: 1px solid #dce3e6; background: #f5f7f8; border-radius: 4px; }
+.generation-diagram > figcaption { margin-bottom: 24px; color: #233740; font-size: 1rem; font-weight: 600; }
+.generation-diagram h4 { margin: 0 0 10px; color: #233740; font-size: 1rem; line-height: 1.6; overflow-wrap: anywhere; }
+.generation-diagram h4 span { display: block; margin-bottom: 4px; color: #416877; font-size: .78rem; font-weight: 500; }
+.generation-diagram p { margin: 0 0 14px; font-size: .88rem; color: #52646e; line-height: 1.85; }
+.generation-diagram a { display: block; min-width: 0; }
+.generation-diagram a:focus-visible { outline-offset: 4px; }
+.generation-diagram img { display: block; width: 100%; height: auto; background: #1e1e1e; border: 1px solid #c9d5db; border-radius: 3px; }
+.generation-diagram code { overflow-wrap: anywhere; }
+.generation-input { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 3fr); gap: 12px 20px; align-items: start; }
+.generation-input > h4, .generation-outputs > li > h4 { grid-column: 1 / -1; margin-bottom: 0; }
+.generation-input > a, .generation-outputs > li > a { grid-column: 1; grid-row: 2; }
+.generation-input > p, .generation-description { grid-column: 2; grid-row: 2; min-width: 0; }
+.generation-description p { margin-bottom: 0; }
+.generation-parser { text-align: center; color: #233740; }
+.generation-parser > strong { font-size: .95rem; }
+.generation-parser > p { margin: 6px 0 14px; }
+.generation-direction { display: block; color: #416877; font-size: 1.7rem; line-height: 1.5; }
+.generation-metadata { padding: 14px 12px; border-block: 2px solid #7c9eac; background: #edf3f5; }
+.generation-metadata strong, .generation-metadata code { display: block; }
+.generation-metadata code { margin-top: 6px; font-size: .8rem; color: #52646e; }
+.generation-output-label { display: block; margin-bottom: 20px; font-size: .85rem; }
+.generation-outputs { position: relative; list-style: none; margin: 0 0 20px 8px; padding: 0 0 0 22px; border-left: 2px solid #7c9eac; }
+.generation-outputs > li { position: relative; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 3fr); gap: 12px 20px; align-items: start; padding: 20px 0; border-bottom: 1px solid #dce3e6; }
+.generation-outputs > li:first-child { padding-top: 0; }
+.generation-outputs > li::before { content: ''; position: absolute; left: -24px; top: 33px; width: 16px; border-top: 2px solid #7c9eac; }
+.generation-outputs > li:first-child::before { top: 13px; }
+.generation-outputs > li:last-child { border-bottom: 0; padding-bottom: 0; }
+.generation-diagram > .source-note { margin: 0; font-size: .78rem; }
+.generation-runtime .flow-steps strong { font-size: .86rem; }
+@media (max-width: 650px) {
+ .generation-input, .generation-outputs > li { grid-template-columns: 1fr; }
+ .generation-input > p, .generation-description { grid-column: 1; grid-row: 3; }
+}
+@media (max-width: 520px) {
+ .generation-diagram { padding: 16px 12px; }
+ .generation-outputs { margin-left: 0; padding-left: 14px; }
+ .generation-outputs > li::before { left: -16px; width: 9px; }
+}
 .asset-fields { margin: 20px 0 0; }
 .asset-fields > div { display: grid; grid-template-columns: 10em minmax(0,1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid #dce3e6; }
 .asset-fields dt { color: var(--accent); font-weight: 600; }
