@@ -58,7 +58,7 @@
   <div class="hero-tech" aria-label="使用技術"><span>C++</span><span>C# / .NET CoreCLR</span><span>DirectX11</span><span>PhysX</span></div>
  <nav class="technical-highlights" aria-label="注目の内部設計"><a href="#reflection"><span>設計の基盤</span><strong>C++自作リフレクション</strong><small>メタ情報の抽出からUI・保存処理へ →</small></a><a href="#csharp"><span>言語間連携</span><strong>C# APIの自動生成</strong><small>バインディングとJSONでのデータ交換 →</small></a></nav>
  </div>
- <nav class="toc-top glass-card" aria-label="ページ内目次"><span class="toc-label">CONTENTS</span><ol><li><a href="#overview"><span>01</span>基本情報</a></li><li><a href="#reflection"><span>02</span>C++自作リフレクション</a></li><li><a href="#csharp"><span>03</span>C#の内部設計</a></li><li><a href="#asset-metadata"><span>04</span>アセット管理</a></li><li><a href="#description"><span>05</span>目標とこだわり</a></li><li><a href="#architecture"><span>06</span>機能の全体像</a></li><li><a href="#implementation"><span>07</span>各種エディタ・物理演算</a></li><li><a href="#future"><span>08</span>今後の開発</a></li></ol></nav>
+ <nav class="toc-top glass-card" aria-label="ページ内目次"><span class="toc-label">CONTENTS</span><ol><li><a href="#overview"><span>01</span>基本情報</a></li><li><a href="#description"><span>02</span>目標とこだわり</a></li><li><a href="#architecture"><span>03</span>機能の全体像</a></li><li><a href="#csharp"><span>04</span>C#の内部設計</a></li><li><a href="#reflection"><span>05</span>C++自作リフレクション</a></li><li><a href="#asset-metadata"><span>06</span>アセット管理</a></li><li><a href="#implementation"><span>07</span>各種エディタ・物理演算</a></li><li><a href="#future"><span>08</span>今後の開発</a></li></ol></nav>
  <section id="overview" class="glass-card content-section">
             <h2><span class="section-index">01</span> 基本情報</h2>
             <div class="detail-container">
@@ -96,8 +96,71 @@
             </div>
           </section>
 
+ <section id="description" class="glass-card content-section">
+  <h2><span class="section-index">02</span> 目標とこだわり</h2>
+  <p class="section-lead">アイデアを素早く試し、改善を繰り返せる開発環境をつくる。</p>
+  <p>ゲーム開発では、変更のたびに発生するビルドや再起動が、試行錯誤の妨げになります。CurryEngineでは、変更をすぐに確認できる仕組みと各種エディタを実装し、ゲーム制作の効率向上に取り組んでいます。</p>
+  <div class="goal-grid">
+   <div><h3>変更をすぐに反映</h3><p>C#とシェーダーのホットリロードで、エンジンを再起動せずに変更を確認できます。</p><a href="#csharp">C#の実装を見る →</a></div>
+   <div><h3>視覚的に調整</h3><p>配置・描画・演出をエディタ上で編集し、制作と動作確認を繰り返しやすくしています。</p><a href="#scene-editor">エディタを見る →</a></div>
+   <div><h3>実際の制作で改善</h3><p>チーム制作でもツールを使用してもらい、メンバーのフィードバックを改善に活かしています。</p><a href="#effect">活用例を見る →</a></div>
+  </div>
+  <a href="https://github.com/Sakana00123/CurryEngine.git" class="github-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> ソースコードを見る <span class="external-note">（GitHub・別タブ）</span></a>
+ </section>
+ <section id="architecture" class="glass-card content-section">
+  <h2><span class="section-index">03</span> 機能の全体像</h2>
+  <p>C++のエンジンを基盤に、C#によるゲームロジックと、制作を支える編集機能を組み合わせています。</p>
+  <div class="engine-map" aria-label="エンジンの機能構成">
+   <div class="engine-layer"><span>ゲームロジック</span><strong>C#スクリプティング</strong><small>.NET CoreCLR / ホットリロード / バインディングの自動生成</small></div>
+   <div class="engine-layer engine-core"><span>エンジン基盤</span><strong>C++ / DirectX11 / PhysX</strong><small>描画・物理演算を支える機能</small></div>
+   <div class="engine-layer"><span>制作ツール</span><strong>各種エディタ</strong><small>レベル / シェーダー / エフェクト / アニメーション</small></div>
+  </div>
+  <p class="muted-note">各機能の役割をまとめた図です。ランタイムとエディタの分離は、今後の開発項目としています。</p>
+ </section>
+<section id="csharp" class="glass-card content-section feature-section">
+              <h2><span class="section-index">04</span> C#スクリプトの内部設計</h2><p class="section-lead">リフレクションのメタ情報を、言語間の連携にも使う。</p>
+              
+ <h3>メタ情報からエンジンAPIを自動生成</h3>
+ <p>C++リフレクションで得たメタ情報を入力として、C#から利用するエンジンAPIを生成しています。C++パーサーを拡張し、連携に必要なバインディングコードも生成することで、手動でラッパーコードを記述する作業を減らしました。</p>
+ <figure class="technical-diagram">
+  <figcaption>API生成の流れと、実行時のデータ受け渡し</figcaption>
+  <div class="diagram-phase">コード生成時</div>
+  <ol class="flow-steps three-steps">
+   <li><strong>C++のメタ情報</strong><p>リフレクション用に抽出した情報を再利用</p></li>
+   <li><strong>API・バインディング生成</strong><p>エンジンとの連携に必要なコードを自動生成</p></li>
+   <li><strong>C#エンジンAPI</strong><p>ゲームロジックからエンジンの機能を利用</p></li>
+  </ol>
+  <div class="diagram-phase">実行時 / プロパティデータ</div>
+  <div class="interop-flow"><div><strong>C++側</strong><span>エンジン・エディタ</span></div><div class="interop-transfer"><span aria-hidden="true">↔</span><strong>JSON文字列</strong><small>プロパティのデータを受け渡す</small></div><div><strong>C#側</strong><span>スクリプト</span></div></div>
+ </figure>
+ <h3>プロパティデータはJSON文字列でやり取り</h3>
+ <p>C++側とC#側の間では、プロパティのデータをJSON文字列で受け渡しています。APIを生成する工程と、実行時にプロパティ値をやり取りする経路を組み合わせて、エディタとスクリプトを連携させています。</p>
+ <h3>CoreCLRとホットリロードによる反復開発</h3>
+ <p>エンジンはC++、変更頻度の高いゲームロジックはC#で記述します。.NET CoreCLRを組み込み、アセンブリを再読み込みすることで、エンジンを再起動せずにコードの変更を反映できるようにしました。</p>
+ <div class="design-result"><h4>ビルド待ちの短縮と、連携コードの保守</h4><p>ゲームロジックのビルド時間を数分から数秒に短縮しました。さらに、メタ情報からのAPI生成によって手動のラッパー実装を減らし、エンジンの機能追加とスクリプト側の連携を効率化しています。</p></div>
+ <h3>スクリプト機能のデモと実装内容</h3>
+<div class="detail-container">
+                <div class="detail-left">
+                  <div class="video-wrapper">
+                    <iframe title="C#スクリプティングのデモ動画" loading="lazy" src="https://www.youtube.com/embed/mggzrCH4DdA"
+                      allowfullscreen>
+                    </iframe>
+                  </div>
+                  <div class="image-wrapper">
+                    <img src="resources/CSharpScript.gif" alt="C#スクリプト機能のデモ" loading="lazy">
+                  </div>
+                </div>
+                <div class="detail-right">
+                  <ul class="tech-list">
+<li><strong class="point-label">エディタとの連携</strong>スクリプトの追加や設定、動作確認をエディタと連携して行えます。</li>
+<li><strong class="point-label">変更の反映</strong>動画ではC#のホットリロード、GIFではスクリプト機能の動作を紹介しています。</li>
+</ul>
+                </div>
+              </div>
+            </section>
+
 <section id="reflection" class="glass-card content-section technical-section">
- <h2><span class="section-index">02</span> C++自作リフレクション</h2>
+ <h2><span class="section-index">05</span> C++自作リフレクション</h2>
  <p class="section-lead">クラスの情報を一度抽出し、編集UI・保存処理・API生成に活用する。</p>
  <p>Unreal Engineのリフレクションを参考に、C++のクラス名・メンバー変数の名前や型・属性を扱う仕組みを自作しました。インスペクタの表示やJSONへの保存処理を、メンバー変数を追加するたびに手書きする作業を減らすことが目的です。</p>
  <h3>外部パーサー方式を採用した理由</h3>
@@ -140,50 +203,8 @@
  <div class="design-result"><h4>実装によって減らした作業</h4><p>対応済みの型では、個々のメンバー変数に対するインスペクタ表示や保存処理を共通の仕組みに任せられます。メタ情報を複数の機能で利用することで、登録や連携コードを手作業で増やす負担を抑えています。</p></div>
  <details class="technical-details"><summary>実装で直面した課題と対応（発表時点）</summary><p>新しい型に対応する際は、インスペクタ表示とシリアライズの型登録が必要でした。シリアライズ側ではマクロにより登録処理を1行にまとめ、未対応の型のUIは必要に応じてImGuiで個別に実装していました。</p><p>また、privateメンバーへのアクセスで詰まり、発表時点では対象の変数をpublicにする形で対応していました。自動化の仕組みと、型ごとに追加対応が必要な範囲を分けて実装しています。</p><p class="source-note">発表資料 p.9に記載した課題と対応です。</p></details>
 </section>
-<section id="csharp" class="glass-card content-section feature-section">
-              <h2><span class="section-index">03</span> C#スクリプトの内部設計</h2><p class="section-lead">リフレクションのメタ情報を、言語間の連携にも使う。</p>
-              
- <h3>メタ情報からエンジンAPIを自動生成</h3>
- <p>C++リフレクションで得たメタ情報を入力として、C#から利用するエンジンAPIを生成しています。C++パーサーを拡張し、連携に必要なバインディングコードも生成することで、手動でラッパーコードを記述する作業を減らしました。</p>
- <figure class="technical-diagram">
-  <figcaption>API生成の流れと、実行時のデータ受け渡し</figcaption>
-  <div class="diagram-phase">コード生成時</div>
-  <ol class="flow-steps three-steps">
-   <li><strong>C++のメタ情報</strong><p>リフレクション用に抽出した情報を再利用</p></li>
-   <li><strong>API・バインディング生成</strong><p>エンジンとの連携に必要なコードを自動生成</p></li>
-   <li><strong>C#エンジンAPI</strong><p>ゲームロジックからエンジンの機能を利用</p></li>
-  </ol>
-  <div class="diagram-phase">実行時 / プロパティデータ</div>
-  <div class="interop-flow"><div><strong>C++側</strong><span>エンジン・エディタ</span></div><div class="interop-transfer"><span aria-hidden="true">↔</span><strong>JSON文字列</strong><small>プロパティのデータを受け渡す</small></div><div><strong>C#側</strong><span>スクリプト</span></div></div>
- </figure>
- <h3>プロパティデータはJSON文字列でやり取り</h3>
- <p>C++側とC#側の間では、プロパティのデータをJSON文字列で受け渡しています。APIを生成する工程と、実行時にプロパティ値をやり取りする経路を組み合わせて、エディタとスクリプトを連携させています。</p>
- <h3>CoreCLRとホットリロードによる反復開発</h3>
- <p>エンジンはC++、変更頻度の高いゲームロジックはC#で記述します。.NET CoreCLRを組み込み、アセンブリを再読み込みすることで、エンジンを再起動せずにコードの変更を反映できるようにしました。</p>
- <div class="design-result"><h4>ビルド待ちの短縮と、連携コードの保守</h4><p>ゲームロジックのビルド時間を数分から数秒に短縮しました。さらに、メタ情報からのAPI生成によって手動のラッパー実装を減らし、エンジンの機能追加とスクリプト側の連携を効率化しています。</p></div>
- <h3>スクリプト機能のデモと実装内容</h3>
-<div class="detail-container">
-                <div class="detail-left">
-                  <div class="video-wrapper">
-                    <iframe title="C#スクリプティングのデモ動画" loading="lazy" src="https://www.youtube.com/embed/mggzrCH4DdA"
-                      allowfullscreen>
-                    </iframe>
-                  </div>
-                  <div class="image-wrapper">
-                    <img src="resources/CSharpScript.gif" alt="C#スクリプト機能のデモ" loading="lazy">
-                  </div>
-                </div>
-                <div class="detail-right">
-                  <ul class="tech-list">
-<li><strong class="point-label">エディタとの連携</strong>スクリプトの追加や設定、動作確認をエディタと連携して行えます。</li>
-<li><strong class="point-label">変更の反映</strong>動画ではC#のホットリロード、GIFではスクリプト機能の動作を紹介しています。</li>
-</ul>
-                </div>
-              </div>
-            </section>
-
 <section id="asset-metadata" class="glass-card content-section technical-section">
- <h2><span class="section-index">04</span> アセットのメタ情報管理</h2>
+ <h2><span class="section-index">06</span> アセットのメタ情報管理</h2>
  <p class="section-lead">アセットに付随する情報を、メタファイルに記録する。</p>
  <p>アセットのメタファイルには、GUID・アセット種別・インポート設定・ファイルパスを記録しています。アセット本体とは別に、識別情報や読み込み時の設定をまとめて管理する構成にしました。</p>
  <figure class="technical-diagram">
@@ -199,27 +220,6 @@
   <div><dt>ファイルパス</dt><dd>アセットのファイルが存在する場所。</dd></div>
  </dl>
 </section>
- <section id="description" class="glass-card content-section">
-  <h2><span class="section-index">05</span> 目標とこだわり</h2>
-  <p class="section-lead">アイデアを素早く試し、改善を繰り返せる開発環境をつくる。</p>
-  <p>ゲーム開発では、変更のたびに発生するビルドや再起動が、試行錯誤の妨げになります。CurryEngineでは、変更をすぐに確認できる仕組みと各種エディタを実装し、ゲーム制作の効率向上に取り組んでいます。</p>
-  <div class="goal-grid">
-   <div><h3>変更をすぐに反映</h3><p>C#とシェーダーのホットリロードで、エンジンを再起動せずに変更を確認できます。</p><a href="#csharp">C#の実装を見る →</a></div>
-   <div><h3>視覚的に調整</h3><p>配置・描画・演出をエディタ上で編集し、制作と動作確認を繰り返しやすくしています。</p><a href="#scene-editor">エディタを見る →</a></div>
-   <div><h3>実際の制作で改善</h3><p>チーム制作でもツールを使用してもらい、メンバーのフィードバックを改善に活かしています。</p><a href="#effect">活用例を見る →</a></div>
-  </div>
-  <a href="https://github.com/Sakana00123/CurryEngine.git" class="github-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> ソースコードを見る <span class="external-note">（GitHub・別タブ）</span></a>
- </section>
- <section id="architecture" class="glass-card content-section">
-  <h2><span class="section-index">06</span> 機能の全体像</h2>
-  <p>C++のエンジンを基盤に、C#によるゲームロジックと、制作を支える編集機能を組み合わせています。</p>
-  <div class="engine-map" aria-label="エンジンの機能構成">
-   <div class="engine-layer"><span>ゲームロジック</span><strong>C#スクリプティング</strong><small>.NET CoreCLR / ホットリロード / バインディングの自動生成</small></div>
-   <div class="engine-layer engine-core"><span>エンジン基盤</span><strong>C++ / DirectX11 / PhysX</strong><small>描画・物理演算を支える機能</small></div>
-   <div class="engine-layer"><span>制作ツール</span><strong>各種エディタ</strong><small>レベル / シェーダー / エフェクト / アニメーション</small></div>
-  </div>
-  <p class="muted-note">各機能の役割をまとめた図です。ランタイムとエディタの分離は、今後の開発項目としています。</p>
- </section>
  <section id="implementation" class="implementation-section">
   <h2><span class="section-index">07</span> 各種エディタ・物理演算</h2>
   <p>実装の目的、仕組み、改善につながった点を、デモとあわせて紹介します。</p>
