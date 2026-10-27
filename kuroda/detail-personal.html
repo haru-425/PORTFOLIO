@@ -23,6 +23,7 @@
     <title>黒田 大智 - 個人制作</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/style_personal.css" />
+    <link rel="stylesheet" href="./css/image-viewer.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -58,7 +59,7 @@
   <div class="hero-tech" aria-label="使用技術"><span>C++</span><span>C# / .NET CoreCLR</span><span>DirectX11</span><span>PhysX</span></div>
  <nav class="technical-highlights" aria-label="注目の内部設計"><a href="#reflection"><span>設計の基盤</span><strong>C++自作リフレクション</strong><small>メタ情報の抽出からUI・保存処理へ →</small></a><a href="#csharp"><span>言語間連携</span><strong>C# APIの自動生成</strong><small>バインディングとJSONでのデータ交換 →</small></a></nav>
  </div>
- <nav class="toc-top glass-card" aria-label="ページ内目次"><span class="toc-label">CONTENTS</span><ol><li><a href="#overview"><span>01</span>基本情報</a></li><li><a href="#description"><span>02</span>目標とこだわり</a></li><li><a href="#architecture"><span>03</span>機能の全体像</a></li><li><a href="#csharp"><span>04</span>C#の内部設計</a></li><li><a href="#reflection"><span>05</span>C++自作リフレクション</a></li><li><a href="#asset-metadata"><span>06</span>アセット管理</a></li><li><a href="#implementation"><span>07</span>各種エディタ・物理演算</a></li><li><a href="#future"><span>08</span>今後の開発</a></li></ol></nav>
+ <nav class="toc-top glass-card" aria-label="ページ内目次"><span class="toc-label">CONTENTS</span><ol><li><a href="#overview"><span>01</span>基本情報</a></li><li><a href="#description"><span>02</span>目標とこだわり</a></li><li><a href="#architecture"><span>03</span>機能の全体像</a></li><li><a href="#csharp"><span>04</span>C#の内部設計</a></li><li><a href="#reflection"><span>05</span>C++自作リフレクション</a></li><li><a href="#asset-metadata"><span>06</span>アセット管理</a></li><li><a href="#implementation"><span>07</span>各種エディタ・物理演算</a></li><li><a href="#future"><span>08</span>今後の開発</a></li><li><a href="#presentation"><span>09</span>学内の技術発表資料</a></li></ol></nav>
  <section id="overview" class="glass-card content-section">
             <h2><span class="section-index">01</span> 基本情報</h2>
             <div class="detail-container">
@@ -99,7 +100,10 @@
  <section id="description" class="glass-card content-section">
   <h2><span class="section-index">02</span> 目標とこだわり</h2>
   <p class="section-lead">アイデアを素早く試し、改善を繰り返せる開発環境をつくる。</p>
-  <p>ゲーム開発では、変更のたびに発生するビルドや再起動が、試行錯誤の妨げになります。CurryEngineでは、変更をすぐに確認できる仕組みと各種エディタを実装し、ゲーム制作の効率向上に取り組んでいます。</p>
+  <p>変更をすぐに確認できる仕組みと各種エディタで、試行錯誤を支えます。</p>
+  <figure class="objective-diagram">
+   <img src="resources/diagram/objective.png" alt="エディタで変更し、すぐに動かして確認し、動きを見て改善する。この流れを短いサイクルで繰り返す。" width="844" height="301" loading="lazy">
+  </figure>
   <div class="goal-grid">
    <div><h3>変更をすぐに反映</h3><p>C#とシェーダーのホットリロードで、エンジンを再起動せずに変更を確認できます。</p><a href="#csharp">C#の実装を見る →</a></div>
    <div><h3>視覚的に調整</h3><p>配置・描画・演出をエディタ上で編集し、制作と動作確認を繰り返しやすくしています。</p><a href="#scene-editor">エディタを見る →</a></div>
@@ -112,7 +116,7 @@
   <p>C++のエンジンを基盤に、C#によるゲームロジックと、制作を支える編集機能を組み合わせています。</p>
   <figure class="engine-map">
    <a href="resources/diagram/engine_main.png" target="_blank" rel="noopener noreferrer"><img src="resources/diagram/engine_main.png" alt="CurryHubでプロジェクトを作成・登録し、CurryEngineを起動。エディターでシーン・素材・設定を編集・保存し、ランタイムがプロジェクトとC#のゲームコードを読み込んで実行する構成図。" width="1063" height="476" loading="lazy"></a>
-   <figcaption>ランチャー・エンジン・プロジェクトの関係（画像を開いて拡大）</figcaption>
+   <figcaption>ランチャー・エンジン・プロジェクトの関係（クリックで拡大）</figcaption>
   </figure>
   <p class="muted-note">各機能の役割をまとめた図です。ランタイムとエディタの分離は、今後の開発項目としています。</p>
  </section>
@@ -228,8 +232,8 @@
   </ol>
  </figure>
  <div class="source-images">
-  <figure><a href="resources/reflection/field-attribute-info.png" target="_blank" rel="noopener noreferrer"><img src="resources/reflection/field-attribute-info.png" alt="AttributeInfoはnameとargs、FieldInfoはtype、name、attributesを保持するC++コード" loading="lazy" width="714" height="444"></a><figcaption>属性とフィールドの定義（画像を開いて拡大）</figcaption></figure>
-  <figure><a href="resources/reflection/class-file-info.png" target="_blank" rel="noopener noreferrer"><img src="resources/reflection/class-file-info.png" alt="ClassInfoはname、bases、fields、reflect、FileInfoはpathとclassesを保持するC++コード" loading="lazy" width="654" height="458"></a><figcaption>クラスとファイルの定義（画像を開いて拡大）</figcaption></figure>
+  <figure><a href="resources/reflection/field-attribute-info.png" target="_blank" rel="noopener noreferrer"><img src="resources/reflection/field-attribute-info.png" alt="AttributeInfoはnameとargs、FieldInfoはtype、name、attributesを保持するC++コード" loading="lazy" width="714" height="444"></a><figcaption>属性とフィールドの定義（クリックで拡大）</figcaption></figure>
+  <figure><a href="resources/reflection/class-file-info.png" target="_blank" rel="noopener noreferrer"><img src="resources/reflection/class-file-info.png" alt="ClassInfoはname、bases、fields、reflect、FileInfoはpathとclassesを保持するC++コード" loading="lazy" width="654" height="458"></a><figcaption>クラスとファイルの定義（クリックで拡大）</figcaption></figure>
  </div>
  <p class="source-note">出典：自身の発表資料「C++で自作リフレクション」p.8。上の図は資料の構造をもとに再構成しています。</p>
  <h3>メタ情報を利用する側の設計</h3>
@@ -390,10 +394,31 @@
               
             </div>
           </section>
+ <section id="presentation" class="glass-card content-section">
+  <h2><span class="section-index">09</span> 学内の技術発表資料</h2>
+  <h3 class="presentation-title">C++で自作リフレクション</h3>
+  <p>学内の技術発表で使用したスライドです。自作リフレクションの実装方式や、コード生成の流れを紹介しています。</p>
+  <div class="slide-viewer" role="region" aria-label="C++で自作リフレクションのスライド" tabindex="0" data-slide-viewer>
+   <div class="slide-stage">
+    <img class="slide-image" src="resources/slides/reflection/slide-01.webp" width="1920" height="1080" alt="1枚目：C++で自作リフレクション" loading="lazy" decoding="async">
+   </div>
+   <div class="slide-controls" hidden>
+    <button type="button" data-slide-prev aria-label="前のスライド" disabled>← 前へ</button>
+    <label class="slide-select-label">ページ <select data-slide-select aria-label="スライドのページを選択"></select></label>
+    <button type="button" data-slide-next aria-label="次のスライド">次へ →</button>
+    <button type="button" class="slide-fullscreen" data-slide-fullscreen aria-pressed="false">全画面表示</button>
+   </div>
+   <p class="slide-status" aria-live="polite" aria-atomic="true"></p>
+  </div>
+  <p class="slide-hint" hidden>左右の矢印キー、またはスワイプで切り替えられます。全画面表示は Esc キーでも閉じられます。</p>
+  <noscript><p>すべてのスライドを見るにはJavaScriptを有効にしてください。</p></noscript>
+ </section>
  <div class="page-end"><a class="back-link" href="index.html#projects">← 個人制作一覧へ</a><a href="#page-top">ページの先頭へ ↑</a></div>
 </main>
     <script src="js/banner.js"></script>
 
     <script src="./js/script.js"></script>
+    <script src="./js/slide-viewer.js"></script>
+    <script src="./js/image-viewer.js"></script>
   </body>
 </html>
