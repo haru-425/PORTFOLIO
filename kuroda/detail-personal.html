@@ -269,7 +269,7 @@
  <section id="implementation" class="implementation-section">
   <h2><span class="section-index">07</span> 各種エディタ・物理演算</h2>
   <p>実装の目的、仕組み、改善につながった点を、デモとあわせて紹介します。</p>
-  <nav class="feature-nav" aria-label="実装内容の目次"><a href="#scene-editor">01 レベルエディタ</a><a href="#shader-editor">02 シェーダーエディタ</a><a href="#physx">03 PhysXを用いた物理演算</a><a href="#effect">04 エフェクトエディタ</a><a href="#other">05 アニメーションエディタ</a></nav>
+  <nav class="feature-nav" aria-label="実装内容の目次"><a href="#scene-editor">01 レベルエディタ</a><a href="#shader-editor">02 シェーダーエディタ</a><a href="#physx">03 PhysXを用いた物理演算</a><a href="#effect">04 エフェクトエディタ</a><a href="#other">05 アニメーションタイムラインエディタ</a></nav>
   <section id="scene-editor" class="glass-card content-section feature-section">
               <div class="feature-heading"><span class="feature-number">01</span><div><h3>レベルエディタ</h3><p>配置からパラメータ調整まで、画面上で編集。</p></div></div>
               <div class="detail-container">
@@ -286,8 +286,6 @@
                     </li>
                     <li><strong class="point-label">工夫</strong>Undo/Redoや複数選択など、レベル制作で頻繁に使用する機能を実装しました。
                       
-                    </li>
-                    <li><strong class="point-label">今後</strong>今後は、特定のゲームに合わせた専用ツールを開発し、レベル設計からゲームプレイの調整までを効率的に行える環境を目指します。
                     </li>
                   </ul>
                 </div>
@@ -333,8 +331,6 @@
                     </li>
                     <li><strong class="point-label">実装</strong>Rigidbodyや各種Colliderをコンポーネントとして実装し、エディタ上で物理特性や当たり判定を設定できるようにしました。
                     </li>
-                    <li><strong class="point-label">今後</strong>今後はジョイント機能などにも対応し、より幅広い物理表現を実現する予定です。
-                    </li>
                   </ul>
                 </div>
               </div>
@@ -364,11 +360,22 @@
               </div>
             </section>
 <section id="other" class="glass-card content-section feature-section">
-              <div class="feature-heading"><span class="feature-number">05</span><div><h3>アニメーションエディタ</h3><p>キャラクターのアニメーションを視覚的に編集。</p></div></div>
-              <div class="text-only-feature">
+              <div class="feature-heading"><span class="feature-number">05</span><div><h3>アニメーションタイムラインエディタ</h3><p>アニメーションに合わせて、サウンドやエフェクトなどのイベントを設定。</p></div></div>
+              <div class="detail-container">
+                <div class="detail-left">
+                  <div class="video-wrapper">
+                    <iframe title="アニメーションタイムラインエディタのデモ動画" loading="lazy" src="https://www.youtube.com/embed/DWVyiMBcG6s"
+                      allowfullscreen>
+                    </iframe>
+                  </div>
+                </div>
                 <div class="detail-right">
                   <ul class="tech-list">
-                    <li><strong class="point-label">目的</strong>アニメーションエディタを実装し、キャラクターのアニメーションを視覚的に編集できる環境を提供しました。
+                    <li><strong class="point-label">目的</strong>アニメーションに合わせた演出や処理のタイミングを調整できるよう、アニメーションタイムラインエディタを実装しました。
+                    </li>
+                    <li><strong class="point-label">実装</strong>各ステートのアニメーションに対して、サウンド再生・エフェクト再生・関数呼び出しのイベントをタイムライン上で設定できます。
+                    </li>
+                    <li><strong class="point-label">工夫</strong>キーを配置する際に実際のアニメーションの動きを確認できるようにし、動作に合わせてイベントの発生タイミングを調整しやすくしました。
                     </li>
                   </ul>
                 </div>
