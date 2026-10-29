@@ -52,7 +52,7 @@ body.slide-viewer-open { overflow: hidden; }
 .personal-page .detail-container { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 28px; padding: 0; align-items: start; }
 .personal-page .detail-left, .personal-page .detail-right { min-width: 0; }
 .personal-page .video-wrapper { background: #10131c; border-radius: 8px; overflow: hidden; }
-.personal-page .image-wrapper { height: auto; padding: 0; background: #10131c; }
+.personal-page .image-wrapper { height: auto; padding: 0; aspect-ratio: auto; background: #10131c; }
 .personal-page .image-wrapper img { position: static; display: block; width: 100%; height: auto; object-fit: contain; }
 .spec-table { border-collapse: collapse; width: 100%; font-size: .9rem; }
 .spec-table th, .spec-table td { padding: 10px 0; text-align: left; vertical-align: top; border-bottom: 1px solid #dce3e6; }

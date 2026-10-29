@@ -12,6 +12,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 110px;
 }
 
 body {
@@ -49,6 +50,18 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    gap: 8px 20px;
+}
+
+header nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 15px;
+}
+
+header nav a {
+    white-space: nowrap;
 }
 
 .contact-info span {
@@ -60,7 +73,7 @@ header {
 nav a {
     color: white;
     text-decoration: none;
-    margin-left: 15px;
+    margin-left: 0;
     font-size: 0.9rem;
     transition: 0.3s;
 }
@@ -83,6 +96,8 @@ section {
 }
 
 .glass-card {
+    min-width: 0;
+    overflow-wrap: anywhere;
     background: var(--glass);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
@@ -92,14 +107,14 @@ section {
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 30px;
 }
 
 .video-wrapper {
     position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
+    padding: 0;
+    aspect-ratio: 16 / 9;
     margin-bottom: 15px;
 }
 
@@ -116,8 +131,8 @@ section {
 /* 画像モード用スタイル */
 .image-wrapper {
     position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
+    padding: 0;
+    aspect-ratio: 16 / 9;
     margin-bottom: 15px;
     overflow: hidden;
     border-radius: 8px;
@@ -157,7 +172,6 @@ section {
     font-size: 0.8rem;
     opacity: 0.7;
     line-height: 1.5;
-    overflow: hidden;    /* 万が一溢れた場合の保険 */
 }
 
 /* 詳細ボタンのスタイル(下に配置) */
@@ -211,7 +225,7 @@ a:hover {
 
 .skill-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
     gap: 20px;
 }
 
@@ -233,6 +247,11 @@ a:hover {
     /* 黒いアイコンでも見えるように、薄く白い発光エフェクトを追加 */
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
     transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.skill-card img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* ホバーした時にさらに発光させる */
@@ -336,7 +355,7 @@ h3 {
 
 .detail-grid {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     gap: 30px;
 }
 
@@ -410,10 +429,10 @@ h3 {
 }
 
 
-/* チーム制作：8個対応グリッド */
+/* チーム制作：画面幅に合わせて列数を切り替える */
 .team-project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
     /* カードの最小幅を少し狭く */
     gap: 20px;
 }
@@ -427,16 +446,11 @@ h3 {
     height: 100%; /* すべてのカードの高さを一番長いものに合わせる */
 }
 
-/* --- 中身のテキストエリアをGrid化して、各パーツの開始位置を固定する --- */
+/* 文章の折り返しに応じて高さを伸ばし、詳細ボタンを下端に揃える */
 .team-info-overlay {
-    display: grid;
-    /* 1行目(tag): 自動
-      2行目(h3): 自動
-      3行目(spec-icons): 90px で固定（3〜4行分の高さを確保）
-      4行目(project-summary): 70px で固定（2〜3行分の高さを確保）
-      5行目(button): 自動
-    */
-    grid-template-rows: auto auto 90px 70px auto;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
     gap: 10px; /* パーツ間の隙間 */
     flex-grow: 1; /* カード下部までエリアを広げる */
 }
@@ -533,6 +547,24 @@ h3 {
 .profile-text p {
     margin: 12px 0;
     line-height: 1.6;
+}
+
+.profile-text {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.detail-left, .detail-right {
+    min-width: 0;
+}
+
+@media (max-width: 600px) {
+    .glass-card { padding: 18px; }
+    .video-wrapper, .image-wrapper { padding: 0; }
+    .detail-page-wrapper { padding: 0 16px; }
+    .detail-page-wrapper > section { margin: 0 auto 40px; padding: 0; }
+    .project-title-large { font-size: clamp(1.6rem, 6vw, 2.5rem); overflow-wrap: anywhere; }
+    .spec-info th, .spec-info td { padding: 8px 5px; overflow-wrap: anywhere; }
 }
 
 .profile-text strong {
